@@ -15,4 +15,4 @@ typedef struct voisin voisin;
 
 matrix coloreplace(matrix m,coord c,char color);
 voisin* voisinage(matrix m,coord c,int n);
-	
+matrice composante_conn(matrix M,char color);
