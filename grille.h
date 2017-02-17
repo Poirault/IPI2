@@ -14,4 +14,4 @@
 typedef char **matrix;
 
 int rand_a_b(int a, int b);
-matrix mat1(int m);
+matrix grille(int m);
