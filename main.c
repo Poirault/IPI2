@@ -1,3 +1,5 @@
+#include "coul-fct1_2.h"
+#include "grille.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
