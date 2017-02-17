@@ -13,6 +13,11 @@
 #include "grille.h"
 
 int main {
+
+/*
+Test Création de matrice 
+---------------------------------------------------------
+*/
 	/*Test matrice taille négative*/
 	printf ("Test création de matrice à taille négative (m=-3)");
 	int j,k;
@@ -25,6 +30,9 @@ int main {
 		printf("\n");
 		}
 	free(M1);
+
+printf("\n");
+printf("\n");
 	
 	/*Test matrice taille nulle*/
 	printf ("Test création de matrice à taille nulle");
@@ -38,6 +46,9 @@ int main {
 		}
 	free(M2);
 
+printf("\n");
+printf("\n");
+
 	/* Test matrice taille unitaire*/
 	printf ("Test création de matrice à taille unitaire (m=1)");
 	matrix M3;
@@ -50,6 +61,9 @@ int main {
 		}
 	free(M3);
 
+printf("\n");
+printf("\n");
+
 	/*Test matrice taille normale*/
 	printf ("Test création de matrice à taille normale (m=5)");
 	matrix M;
@@ -60,6 +74,14 @@ int main {
 			}
 		printf("\n");
 		}
+
+printf("\n");
+printf("\n");
+
+/*
+Test colorplace
+---------------------------------------------------
+*/
 	
 	/*Test colorplace avec des coordonnées en dehors de la grille*/
 	matrix M4;	
@@ -75,6 +97,9 @@ int main {
 	printf("\n");
 	}
 	free(M4);
+
+printf("\n");
+printf("\n");
 	
 	/*Test colorplace avec une couleur identique à la couleur à remplacer*/
 	matrix M5;	
@@ -91,6 +116,33 @@ int main {
 	printf("\n");
 	}
 	free(M5);
+
+printf("\n");
+printf("\n");
+
+	/*Test colorplace dans une condition normale*/
+	matrix M6;	
+	coord c;
+	c.x = 2;
+	c.y = 2;
+	printf("Test 'colorplace' dans une condition normale, remplacer la couleur de coordonnée (2;2) par la couleur D (qui n'existe pas, afin d'être sûr de ne pas tomber sur une la même couleur)");
+	M6 = colorplace(M, c, D);
+	for (j = 0; j < 5; ++j) {
+		for (k = 0; k < 5; ++k) {
+			printf("%10c", M6[j][k]);
+		}
+	printf("\n");
+	}
+	free(M6);
+
+printf("\n");
+printf("\n");
+
+/*
+Test composante_conn
+----------------------------------------------------
+*/
+
 
 
 	
