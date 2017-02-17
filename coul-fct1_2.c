@@ -71,16 +71,16 @@ matrice composante_conn(matrix M,char color){    /*renvoie une matrice d'entier 
 	for(i=0,i<m,i++){					/*initialisation de la recherche de composante connexe de la nouvelle couleur*/
 		for(j=0,j<m,j++){
 			if(mat[i][j]==1){
-				if (M[i+1][j]==c){
+				if (M[i+1][j]==color){
 					mat1[i+1][j]=2;
 				}
-				if (M[i-1][j]==c){
+				if (M[i-1][j]==color){
 					mat1[i-1][j]=2;
 				}
-				if (M[i][j+1]==c){
+				if (M[i][j+1]==color){
 					mat1[i][j+1]=2;
 				}
-				if (M[i][j-1]==c){
+				if (M[i][j-1]==color){
 					mat1[i][j-1]=2;
 				}
 			}
@@ -91,19 +91,19 @@ matrice composante_conn(matrix M,char color){    /*renvoie une matrice d'entier 
 		for(i=0,i<m,i++){
 			for(j=0,j<m,j++){
 				if(mat[i][j]==2){
-					if (M[i+1][j]==c){
+					if (M[i+1][j]==color){
 						mat1[i+1][j]=2;
 						q=2;
 					}
-					if (M[i-1][j]==c){
+					if (M[i-1][j]==color){
 						mat1[i-1][j]=2;
 						q=2;
 					}
-					if (M[i][j+1]==c){
+					if (M[i][j+1]==color){
 						mat1[i][j+1]=2;
 						q=2;
 					}
-					if (M[i][j-1]==c){
+					if (M[i][j-1]==color){
 						mat1[i][j-1]=2;
 						q=2;
 					}
