@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <ncurses.h>
 #include <string.h>
 
 typedef struct coord coord;

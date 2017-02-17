@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-#include <ncurses.h>
 #include <string.h>
 
 struct coord{                    /*J'ai crée une nouvelle structure simple pour faciliter les chose surement à remettre dans le main*/
