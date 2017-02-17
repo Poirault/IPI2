@@ -26,7 +26,6 @@ matrix coloreplace(matrix m,coord c,char color){                              /*
 }
 
 
-typedef int** matrice;
 
 matrice composante_conn(matrix M,char color){    /*renvoie une matrice d'entier donnant les cases à colorier (pas du tout optimal)*/
 	int i,q;
