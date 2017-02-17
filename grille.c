@@ -24,7 +24,7 @@ int rand_a_b(int a, int b)
 /*
 Fonction créant la grille du jeu avec des couleur aléatoire
 */
-matrix mat1(int m)
+matrix grille(int m)
 {
 	int a,b,i,test;
 	char **mat1= NULL;
