@@ -1,0 +1,36 @@
+Rapport...
+
+
+I-Algorithmes
+
+Grille : 
+-Connaissant la fonction permettant de générer des chiffres aléatoirement, nous avons directement pensé d'associer les couleurs (représentées par des lettres) à des chiffres (de 1 à 6).
+
+Couleur : 
+-Création d'une structure "coord" pour avoir directement les coordonnées (x;y).
+-Colorplace : Vérification que les coordonnées ne sont pas en dehors de la grille. Si ce n'est pas le cas on peut remplacer la couleur de la coordonnée (x;y) par le caractère 'color'.
+-composante-conn : Création d'une 2ème matrice d'entier, parcours pour identifier toutes les composantes connexes de la couleur d'origine (en haut à gauche), ces cases seront identifiées par des "1". Deuxième parcours pour identifier les composantes connexes à ce blocs de couleur 'color', ces cases seront identifiées par des "2". Ainsi il faudra remplacer les cases ayant un "1" par la couleur 'color'.
+
+
+
+
+
+II-Organisation adoptée
+
+Désignation du référent : Kévin Bizien.
+
+Le référent réparti les tâches :
+
+-Vartan : "Fonctionnalité 1 : Grille" 
+
+-Léo : Les deux premières exigences de "Fonctionnalité 2 : Couleur"
+
+-Romuald : Les deux dernières exigences de "Fonctionnalité 2 : Couleur"
+
+Celui qui écrit son code le commente.
+
+Le référent a pour rôle de regarder châque code et d'y faire les rapports ainsi que les tests unitaires.
+
+Makefile fait en groupe.
+
+Les consignes étaient de coder le maximum possible avant la séance de TP du vendredi 17 février.
