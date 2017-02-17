@@ -1,4 +1,3 @@
-#include "coul-fct1_2.c"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>

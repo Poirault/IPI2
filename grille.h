@@ -1,4 +1,3 @@
-#include "grille.c"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
