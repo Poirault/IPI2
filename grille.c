@@ -10,7 +10,7 @@
 #include <string.h>
 
 
-typedef char **matrix;
+
 
 /*
 Fonction qui créer un chiffre aléatoire entre a et b
@@ -79,26 +79,4 @@ matrix mat1(int m)
 
 
 
-int main()
-{
-	int j,k,m;
-	matrix M;
-	printf("Donnez la taille du jeu");
-	scanf("%d",&m);
-	M=testmat1(m);
 
-	for (j = 0; j < m; ++j)
-		{
-			for (k = 0; k < m; ++k)
-			{
-				
-				printf("%10c", M[j][k]);
-			}
-		printf("\n");
-		}
-	
-	free(M);
-
-	return 0;
-
-}
