@@ -10,7 +10,6 @@
 #include <string.h>
 
 typedef struct coord coord;
-typedef struct voisin voisin;
 typedef int** matrice;
 
 matrix coloreplace(matrix m,coord c,char color);
