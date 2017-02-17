@@ -17,7 +17,7 @@ int main()
 	matrix M;
 	printf("Donnez la taille du jeu");
 	scanf("%d",&m);
-	M=testmat1(m);
+	M=grille(m);
 
 	for (j = 0; j < m; ++j)
 		{
