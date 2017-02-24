@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <time.h>
 #include <string.h>
 
 
@@ -28,13 +28,13 @@ Fonction créant la grille du jeu avec des couleur aléatoire
 matrix grille(int m)
 {
 	int a,b,i,test;
-	char **mat1= NULL;
+	matrix mat1= NULL;
 	mat1=(char **)calloc(m, sizeof(char*));
 	for (i = 0; i < m; ++i)
 	{
 		mat1[i]=(char *)calloc(m, sizeof(char));
 	}
-	
+	srand(time(NULL));
 	for (a = 0; a < m; ++a)
     {
         for (b = 0; b < m; ++b)
