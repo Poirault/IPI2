@@ -9,8 +9,4 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-typedef struct coord coord;
-typedef int** matrice;
-int getche(void);
-matrix coloreplace(matrix M,coord c,char color,int m);
-matrice composante_conn(matrix M,char color,int m);
+int victoire(matrix M,int m);
