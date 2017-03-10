@@ -9,10 +9,7 @@
 #include <time.h>
 #include <string.h>
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 /**
  /file victoire.h
  /brief On y mettra toutes les fonctions simples, utiles, pour faciliter la lecture
@@ -25,13 +22,12 @@
  /brief On a été voir sur internet le jeu et on en a conclu que la formule moyenne du nombre de coup 
 en fonction de la taille du jeu de 1,7*tailleJeu
 */
-<<<<<<< HEAD
+
 
 void affich_couleur(M,j,k);
 
 
-=======
->>>>>>> master
+
 int nmbre_coup(int m); 
 
 
