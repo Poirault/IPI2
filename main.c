@@ -42,7 +42,6 @@ int main()
 		}
 	printf("\n");
 
-	printf("Bite");
 	} printf("Number tour : %d/%d \n", tour, nbCoup);
 
 	while((f!=0) && (f!=2)) { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
