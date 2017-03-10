@@ -15,6 +15,8 @@ test_unitaire.c -> Un programme qui permet de lire des dispositions prédefinies
 victoire.h 	-> Librairie de victoire.c 
 victoire.c 	-> Programme verifiant conditions de victoire du jeu.
 
+fonctions_utiles.h -> Librairie de fonctions_utiles.c
+fonctions_utiles.c -> Programmes utiles divers (cf commentaires).
 main.c
 Makefile -> Pour lancer la compilation faire : *****  make ******
 	-> Pour executer faire : ****** ./prog *****
