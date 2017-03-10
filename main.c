@@ -41,6 +41,8 @@ int main()
 			printf("%10c", M[j][k]); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
 		}
 	printf("\n");
+
+	printf("Bite");
 	} printf("Number tour : %d/%d \n", tour, nbCoup);
 
 	while((f!=0) && (f!=2)) { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
