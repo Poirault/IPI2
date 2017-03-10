@@ -1,6 +1,6 @@
 
 prog: main.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o
-	gcc -Wall -Wextra main2.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o -o prog -lm
+	gcc -Wall -Wextra main.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o -o prog -lm
 main.o: main.c grille.h coul-fct1_2.h victoire.h fonctions_utiles.h
 	gcc -Wall -Wextra -c main.c -lm
 coul-fct1_2.o: coul-fct1_2.c coul-fct1_2.h grille.h
