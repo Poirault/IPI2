@@ -23,7 +23,13 @@ typedef char **matrix;
  /return entier
  /brief Fonction qui créer un chiffre aléatoire entre a et b
 */
-
 int rand_a_b(int a, int b);
+
+/**
+ /function grille
+ /param m(taille du jeu)
+ /return matrix(de caractère)
+ /brief Fonction créant la grille du jeu avec des couleur aléatoire
+*/
 matrix grille(int m);
 
