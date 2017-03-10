@@ -10,7 +10,11 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-int victoire(matrix M,int m)
+
+/*
+Test si les couleurs sont les mêmes partout dans la grille du jeu
+*/
+int victoire(matrix M,int m, int tour, int nbCoup)
 {
 	int j,k;
 	int vict=0;
@@ -20,10 +24,19 @@ int victoire(matrix M,int m)
 			{
 				if(M[0][0]!=M[j][k])
 				{
-					vict=1;
+					vict=1; //Le jeu continue
 				}
 			}
 		}
-	if (vict==0){printf("Victory !\n");}
+	if (tour>nbCoup) //Défaite, arrêt du jeu
+		{
+			printf("Defeat !\n");
+			vict=2;
+		}
+	if(vict==0)//Victoire, arrêt du jeu
+		{
+			printf("Victory !\n");
+		}
 	return(vict);
 }
+

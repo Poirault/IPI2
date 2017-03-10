@@ -10,12 +10,20 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-struct coord{                    /*J'ai crée une nouvelle structure simple pour faciliter les chose surement à remettre dans le main*/
+
+/*
+Structure simple pour accéder au coordonnées (x;y)
+*/
+struct coord{                    
 	int x;
 	int y;
 };
 
-int getche(void) {                                 /* Fonction permettant aux joueurs d'interagir avec le jeu */
+
+/* 
+Fonction permettant aux joueurs d'interagir avec le jeu 
+*/
+int getche(void) {                                 
 	struct termios oldattr, newattr;
 	int ch;
 	tcgetattr( STDIN_FILENO, &oldattr );
@@ -28,8 +36,10 @@ int getche(void) {                                 /* Fonction permettant aux jo
 }
 
 
-	
-matrix coloreplace(matrix M,coord c,char color,int m){                              /* J'ai supposé que la matrice était initiée en globale*/
+/*
+Prend les coordonnées c(x;y) d'une matrice pour changer par la couleur 'color' 
+*/	
+matrix coloreplace(matrix M,coord c,char color,int m){ //J'ai supposé que la matrice était initiée en globale
 	if(c.x>m || c.y>m){
 		printf("Coordonnées non valide :(%d;%d)",c.x,c.y);
 		return (M);
@@ -42,13 +52,15 @@ matrix coloreplace(matrix M,coord c,char color,int m){                          
 
 
 
-
-matrice composante_conn(matrix M,char color,int m){    /*renvoie une matrice d'entier donnant les cases à colorier (pas du tout optimal)*/
+/*
+Renvoie une matrice d'entier donnant les cases à colorier (pas du tout optimal)
+*/
+matrice composante_conn(matrix M,char color,int m){    
 	int i,q,j;
 	char c;
 	q=1;
 	matrice mat1= NULL;
-	mat1=(int **)calloc(m, sizeof(int*));         /*création de cette dite matrice*/
+	mat1=(int **)calloc(m, sizeof(int*)); //création de cette dite matrice
 	for (i = 0; i < m; ++i)
 	{
 		mat1[i]=(int *)calloc(m, sizeof(int));
@@ -59,9 +71,9 @@ matrice composante_conn(matrix M,char color,int m){    /*renvoie une matrice d'e
 		}
 	}
 	c=M[0][0];
-	mat1[0][0]=1;                     /*initialisation avec la couleur en haut à gauche*/
-	while(q!=0){                      /*sélectionne toute les cases connexes de même couleur*/
-		q=1;							/*condition darrêt : lorsque plus rien ne change*/
+	mat1[0][0]=1; //initialisation avec la couleur en haut à gauche
+	while(q!=0){  //sélectionne toute les cases connexes de même couleur
+		q=1;	//condition darrêt : lorsque plus rien ne change
 		for(i=0;i<m;i++){
 			for(j=0;j<m;j++){
 				if(mat1[i][j]==1){
@@ -95,10 +107,9 @@ matrice composante_conn(matrix M,char color,int m){    /*renvoie une matrice d'e
 				}
 			}
 		}
-	printf("1");
 	}
-	q=1;					/*remise de la cond d'arrêt*/
-	for(i=0;i<m;i++){					/*initialisation de la recherche de composante connexe de la nouvelle couleur*/
+	q=1; //remise de la cond d'arrêt
+	for(i=0;i<m;i++){ //initialisation de la recherche de composante connexe de la nouvelle couleur
 		for(j=0;j<m;j++){
 			if(mat1[i][j]==1){
 				if (i<m-1){
@@ -124,7 +135,7 @@ matrice composante_conn(matrix M,char color,int m){    /*renvoie une matrice d'e
 			}
 		}
 	}
-	while(q!=0){		/*boucle pour trouver tous les éléments connexes même cond d'arrêt que précedemment*/
+	while(q!=0){ //boucle pour trouver tous les éléments connexes même cond d'arrêt que précedemment
 		q=1;
 		for(i=0;i<m;i++){
 			for(j=0;j<m;j++){
@@ -159,9 +170,11 @@ matrice composante_conn(matrix M,char color,int m){    /*renvoie une matrice d'e
 				}
 			}
 		}
-	printf("2");
 	}
-	return(mat1);/*retour de la mat de coloriage les 1 et 2 sont à colorier le reste (0) sont à laisser tel quel chez la mat de char */
+	return(mat1);
+	/*
+	retour de la matrice de coloriage les 1 et 2 sont à colorier le reste (0) sont à laisser tel quel chez la mat de char 
+	*/
 }
 		
 						
@@ -169,4 +182,6 @@ matrice composante_conn(matrix M,char color,int m){    /*renvoie une matrice d'e
 	
 	
 	
+	
+
 	
