@@ -30,13 +30,13 @@ void affich_couleur(matrix M, int j, int k)
 	
 	if(M[j][k]=='B')
 	{
-	couleur("30");
+	couleur("34");
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
 	if(M[j][k]=='G')
 	{
-	couleur("34	");
+	couleur("30");
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
@@ -48,7 +48,7 @@ void affich_couleur(matrix M, int j, int k)
 	}
 	if(M[j][k]=='M')
 	{
-	couleur("32");
+	couleur("35");
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
@@ -60,7 +60,7 @@ void affich_couleur(matrix M, int j, int k)
 	}
 	if(M[j][k]=='V')
 	{
-	couleur("35");
+	couleur("32");
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
