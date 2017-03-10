@@ -1,4 +1,6 @@
 #include "fonctions_utiles.h"
+#include "couleur.h"
+#include "grille.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -23,3 +25,44 @@ int nmbre_coup(int m)
 	return partie_entiere;
 }
 
+void affich_couleur(matrix M, int j, int k)
+{
+	
+	if(M[j][k]=='B')
+	{
+	couleur("30");
+	printf("%10c", M[j][k]);
+	couleur("0");
+	}
+	if(M[j][k]=='G')
+	{
+	couleur("34	");
+	printf("%10c", M[j][k]);
+	couleur("0");
+	}
+	if(M[j][k]=='J')
+	{
+	couleur("33");
+	printf("%10c", M[j][k]);
+	couleur("0");
+	}
+	if(M[j][k]=='M')
+	{
+	couleur("32");
+	printf("%10c", M[j][k]);
+	couleur("0");
+	}
+	if(M[j][k]=='R')
+	{
+	couleur("31");
+	printf("%10c", M[j][k]);
+	couleur("0");
+	}
+	if(M[j][k]=='V')
+	{
+	couleur("35");
+	printf("%10c", M[j][k]);
+	couleur("0");
+	}
+
+}

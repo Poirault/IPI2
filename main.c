@@ -2,6 +2,7 @@
 #include "grille.h"
 #include "victoire.h"
 #include "fonctions_utiles.h"
+#include "couleur.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -38,7 +39,7 @@ int main()
 		for (k = 0; k < m; ++k)
 		{
 			
-			printf("%10c", M[j][k]); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
+			affich_couleur(M,j,k); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
 		}
 	printf("\n");
 
@@ -94,9 +95,8 @@ int main()
 		{
 			for (k = 0; k < m; ++k)
 			{
-				couleur("34");
-				printf("%10c", M[j][k]);
-				couleur("0");
+				
+				affich_couleur(M,j,k);
 			}
 		printf("\n");
 		}
