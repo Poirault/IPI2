@@ -1,5 +1,8 @@
-Rapport...
+***********
+Rapport...|
+***********
 
+=======================================================================================================================================================
 
 I-Algorithmes
 
@@ -11,9 +14,9 @@ Couleur :
 -Colorplace : Vérification que les coordonnées ne sont pas en dehors de la grille. Si ce n'est pas le cas on peut remplacer la couleur de la coordonnée (x;y) par le caractère 'color'.
 -composante-conn : Création d'une 2ème matrice d'entier, parcours pour identifier toutes les composantes connexes de la couleur d'origine (en haut à gauche), ces cases seront identifiées par des "1". Deuxième parcours pour identifier les composantes connexes à ce blocs de couleur 'color', ces cases seront identifiées par des "2". Ainsi il faudra remplacer les cases ayant un "1" par la couleur 'color'.
 
+-Commentaire au format doxygen mis dans les ".h"
 
-
-
+=======================================================================================================================================================
 
 II-Organisation adoptée
 
