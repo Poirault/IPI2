@@ -21,6 +21,7 @@ int main()
 	char o,c;
 
 	matrix M;
+	
 	matrice T;
 
 	printf("Donnez la taille du jeu\n");
