@@ -3,10 +3,10 @@
 
 #include <stdio.h>
 
-// Efface l'écran et replace le curseur en haut à gauche
+/* Efface l'écran et replace le curseur en haut à gauche*/
 #define clrscr() printf("\033[H\033[2J")
 
-// Sélection de couleurs
+/*Sélection de couleurs*/
 #define couleur(param) printf("\033[%sm",param)
 /*   param devant être un const char *, vide (identique à "0") ou formé
      d'une où plusieurs valeurs séparées par des ; parmi

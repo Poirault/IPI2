@@ -94,8 +94,9 @@ int main()
 		{
 			for (k = 0; k < m; ++k)
 			{
-				
+				couleur("34");
 				printf("%10c", M[j][k]);
+				couleur("0");
 			}
 		printf("\n");
 		}
