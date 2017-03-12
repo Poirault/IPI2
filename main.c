@@ -1,7 +1,6 @@
 #include "coul-fct1_2.h"
 #include "grille.h"
 #include "victoire.h"
-#include "fonctions_utiles.h"
 #include "couleur.h"
 #include <stdio.h>
 #include <termios.h>
