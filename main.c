@@ -1,5 +1,6 @@
 #include "coul-fct1_2.h"
 #include "grille.h"
+#include "fonctions_utiles.h"
 #include "victoire.h"
 #include "couleur.h"
 #include <stdio.h>
@@ -12,6 +13,8 @@
 #include <math.h>
 #include <time.h>
 #include <string.h>
+
+
 
 int main()
 {
