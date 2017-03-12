@@ -9,6 +9,7 @@
 #include <time.h>
 #include "couleur.h"
 	
+	/*
 #define couleur(param) printf("\033[%sm",param)
 
-
+*/
