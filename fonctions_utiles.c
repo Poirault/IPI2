@@ -15,7 +15,7 @@
 
 
 /*
- On a été voir sur internet le jeu et on en a conclu que la formule moyenne du nombre de coup 
+On a été voir sur internet le jeu et on en a conclu que la formule moyenne du nombre de coup 
 en fonction de la taille du jeu de 1,7*tailleJeu
 */
 int nmbre_coup(int m)

@@ -2,15 +2,6 @@
 #define COULEURS
 
 #include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
-#include <string.h>
 
 /* Efface l'écran et replace le curseur en haut à gauche*/
 #define clrscr() printf("\033[H\033[2J")

@@ -25,7 +25,10 @@ en fonction de la taille du jeu de 1,7*tailleJeu
 */
 
 
+void affich_couleur(M,j,k);
+
+
+	
 int nmbre_coup(int m); 
 
-void affich_couleur(M,j,k);
 
