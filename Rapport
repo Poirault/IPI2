@@ -6,34 +6,32 @@ Rapport...|
 
 I-Algorithmes
 
-Grille : 
--Connaissant la fonction permettant de générer des chiffres aléatoirement, nous avons directement pensé d'associer les couleurs (représentées par des lettres) à des chiffres (de 1 à 6).
+-Tout était fait dans le sprint 1, il ne restait plus qu'à incrémentait une formule du nombre de tour en fonction de la taille du jeu que le joueur 
+entre, et d'y ajouter un compteur afin que le jeu se termine lorsque le joueur depasse ce nombre de tour.
 
-Couleur : 
--Création d'une structure "coord" pour avoir directement les coordonnées (x;y).
--Colorplace : Vérification que les coordonnées ne sont pas en dehors de la grille. Si ce n'est pas le cas on peut remplacer la couleur de la coordonnée (x;y) par le caractère 'color'.
--composante-conn : Création d'une 2ème matrice d'entier, parcours pour identifier toutes les composantes connexes de la couleur d'origine (en haut à gauche), ces cases seront identifiées par des "1". Deuxième parcours pour identifier les composantes connexes à ce blocs de couleur 'color', ces cases seront identifiées par des "2". Ainsi il faudra remplacer les cases ayant un "1" par la couleur 'color'.
+-Nous en avons donc profiter pour écrire une fonction "affich_couleur" pour que le terminal soit plus lisible.
 
--Commentaire au format doxygen mis dans les ".h"
+-Commentaire au format doxygen mis dans les ".h".
 
 =======================================================================================================================================================
 
 II-Organisation adoptée
 
-Désignation du référent : Kévin Bizien.
 
-Le référent réparti les tâches :
+Désignation du référent : Romuald
 
--Vartan : "Fonctionnalité 1 : Grille" 
+Vartan : -programmation de la fonctionnalité 1
+-Programmation des lettres apparaissant en couleurs dans le terminal
+-README
 
--Léo : Les deux premières exigences de "Fonctionnalité 2 : Couleur"
+Léo : Programmation des exigences 3 et 4 de la fonctionnalité 2
 
--Romuald : Les deux dernières exigences de "Fonctionnalité 2 : Couleur"
+Kévin : -Proggramation des exigences 1 et 2 de la fonctionnalité 2
+-Mise à jour du makefile
+-Réalisation des commentaires au format Doxygen
+-Rapport
+
 
 Celui qui écrit son code le commente.
 
-Le référent a pour rôle de regarder châque code et d'y faire les rapports ainsi que les tests unitaires.
-
-Makefile fait par Léo.
-
-Les consignes étaient de coder le maximum possible avant la séance de TP du vendredi 17 février.
+Les consignes étaient de coder le maximum possible avant la séance de TP du vendredi 09 Mars.
