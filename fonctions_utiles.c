@@ -1,4 +1,5 @@
 #include "fonctions_utiles.h"
+#include "grille.h"
 #include "couleur.h"
 #include "grille.h"
 #include <stdio.h>
