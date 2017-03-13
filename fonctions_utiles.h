@@ -1,6 +1,8 @@
 #ifndef FONCTIONS_UTILES
 #define FONCTIONS_UTILES
 
+#include "grille.h"
+#include "couleur.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -11,7 +13,6 @@
 #include <math.h>
 #include <time.h>
 #include <string.h>
-
 
 /**
  /file victoire.h
@@ -32,7 +33,7 @@ int nmbre_coup(int m);
  /brief On a été voir sur internet le jeu et on en a conclu que la formule moyenne du nombre de coup 
 en fonction de la taille du jeu de 1,7*tailleJeu
 */
-void affich_couleur(M,j,k);
+void affich_couleur(matrix M,int j,int k);
 
 
 #endif

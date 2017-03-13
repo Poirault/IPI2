@@ -1,6 +1,7 @@
 #ifndef COULEURS
 #define COULEURS
-
+#include "grille.h"
+#include "fonctions_utiles.h"
 #include <termios.h>
 #include <unistd.h>
 #include <stdio.h>

@@ -1,8 +1,3 @@
-#include "coul-fct1_2.h"
-#include "grille.h"
-#include "fonctions_utiles.h"
-#include "victoire.h"
-#include "couleur.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -13,6 +8,12 @@
 #include <math.h>
 #include <time.h>
 #include <string.h>
+
+#include "coul-fct1_2.h"
+#include "grille.h"
+#include "fonctions_utiles.h"
+#include "victoire.h"
+#include "couleur.h"
 
 
 
