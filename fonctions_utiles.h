@@ -1,3 +1,5 @@
+#ifndef FONCTIONS_UTILES
+#define FONCTIONS_UTILES
 
 #include <stdio.h>
 #include <termios.h>
@@ -31,3 +33,6 @@ int nmbre_coup(int m);
 en fonction de la taille du jeu de 1,7*tailleJeu
 */
 void affich_couleur(M,j,k);
+
+
+#endif
