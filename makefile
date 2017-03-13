@@ -11,6 +11,7 @@ victoire.o: victoire.c victoire.h grille.h
 	gcc -Wall -Wextra -c victoire.c -lm
 fonctions_utiles.o: fonctions_utiles.c fonctions_utiles.h grille.h couleur.h
 	gcc -Wall -Wextra -c fonctions_utiles.c -lm
-
+solveur.o: solveur.c solveur.h
+	gcc -Wall -Wextra -c solveur.c -lm
 
 
