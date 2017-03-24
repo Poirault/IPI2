@@ -25,7 +25,7 @@ void solveur(matrix M, int m, int nbCoup)
 	matrice T;
 
 	system("clear");
-
+ 
 	int tour=0;	
 
 	do { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
