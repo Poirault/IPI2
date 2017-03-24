@@ -10,19 +10,15 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-<<<<<<< Updated upstream
 
 /*
 Test si les couleurs sont les mêmes partout dans la grille du jeu
 */
 int victoire(matrix M,int m, int tour, int nbCoup)
-=======
-int victoire(matrix M,int m,int nbdetour,int tourautorisé)
->>>>>>> Stashed changes
 {
+
 	int j,k;
 	int vict=0;
-	nbdetour=nbdetour+1
 	for (j = 0; j < m; ++j)
 		{
 			for (k = 0; k < m; ++k)
