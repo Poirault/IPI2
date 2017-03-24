@@ -15,7 +15,7 @@
 
 void solveur(matrix M, int m, int nbCoup)
 {
-	int i,j,k,m,g;
+	int i,j,test;
 	
 	char solution[nbCoup];
 
@@ -29,6 +29,11 @@ void solveur(matrix M, int m, int nbCoup)
 
 	do { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
 		
+		if (tour == nbCoup) { // Si la solution n'a pas fonctionné 
+			tour = 0;
+			solution[nbCoup] = {0};
+		}
+
 		test=rand_a_b(1,6);
             
 		if(test==1) {
@@ -55,67 +60,32 @@ void solveur(matrix M, int m, int nbCoup)
       		c='v'; //Vert
    		}
 
+   		solution[tour]=c;
+
 		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
 
-		for (j = 0; j < m; ++j)
+		for (i = 0; i < m; ++i)
 		{
-			for (k = 0; k < m; ++k)
+			for (j = 0; j < m; ++j)
 			{
-				if(T[j][k]==1)
+				if(T[i][j]==1)
 				{
-					M[j][k]=c; //on a pas besoin de la fct coloreplace
+					M[i][j]=c; //on a pas besoin de la fct coloreplace
 				}
 			}
 		}
 
 		system("clear");
 
-
 		tour++;
-		
-
-		/* Fonction solveur */
-		if (victoire(M,m,tour,nbCoup)==1)
-		{
-			NbCoupMin=tour;
-			
-		}
-		
+	
 	} while (victoire(M, m, tour, nbCoup));
 
-	
-	
-
-	printf("Le nombre de coup minium est : %d\n", NbCoupMin);
+	printf ("Une solution possible en %d coups est :", tour);
+	for (i=0; i<tour; i++) {
+		printf("%c ", solution[i]);
+	}
 
 }
 
 
-
-/*
-test=rand_a_b(1,6);
-            
-	if(test==1) {
-      	mat1[a][b]='B'; //Bleu
-    }
-
-    if(test==2) {
-       	mat1[a][b]='G'; //Gris
-    }
-
-   	if(test==3) {
-       	mat1[a][b]='J'; //Jaune
-    }
-
-   	if(test==4) {
-        mat1[a][b]='M'; //Marron
-    }
-
-   	if(test==5) {
-        mat1[a][b]='R'; //Rouge
-    }
-
-    if(test==6) {
-        mat1[a][b]='V'; //Vert
-   	}
-*/
