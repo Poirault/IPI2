@@ -9,3 +9,7 @@
 #include <time.h>
 #include <string.h>
 
+#include "grille.h"
+#include "victoire.h"
+
+void solveur(matrix M, int m, int nbCoup);

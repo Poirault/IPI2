@@ -9,28 +9,52 @@
 #include <time.h>
 #include <string.h>
 
+#include "grille.h"
 #include "solveur.h"
+#include "victoire.h"
 
-void solveur(matrix M, int m)
+void solveur(matrix M, int m, int nbCoup)
 {
-	int j,k,m,g, nbCoup, NbCoupMin=1000;
+	int i,j,k,m,g;
 	
+	char solution[nbCoup];
 
 	char c;
-
-	matrix M;
 	
 	matrice T;
 
-	M=grille(m);
-
-	nbCoup = nmbre_coup(m);
-
 	system("clear");
 
-	while() { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
 	int tour=0;	
+
+	do { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
 		
+		test=rand_a_b(1,6);
+            
+		if(test==1) {
+      		c='b'; //Bleu
+   		}
+
+    	if(test==2) {
+      		c='g'; //Gris
+    	}
+
+   		if(test==3) {
+       		c='j'; //Jaune
+    	}
+
+   		if(test==4) {
+       		c='m'; //Marron
+    	}
+
+  		if(test==5) {
+       		c='r'; //Rouge
+    	}
+
+    	if(test==6) {
+      		c='v'; //Vert
+   		}
+
 		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
 
 		for (j = 0; j < m; ++j)
@@ -57,7 +81,7 @@ void solveur(matrix M, int m)
 			
 		}
 		
-	}
+	} while (victoire(M, m, tour, nbCoup));
 
 	
 	
@@ -65,3 +89,33 @@ void solveur(matrix M, int m)
 	printf("Le nombre de coup minium est : %d\n", NbCoupMin);
 
 }
+
+
+
+/*
+test=rand_a_b(1,6);
+            
+	if(test==1) {
+      	mat1[a][b]='B'; //Bleu
+    }
+
+    if(test==2) {
+       	mat1[a][b]='G'; //Gris
+    }
+
+   	if(test==3) {
+       	mat1[a][b]='J'; //Jaune
+    }
+
+   	if(test==4) {
+        mat1[a][b]='M'; //Marron
+    }
+
+   	if(test==5) {
+        mat1[a][b]='R'; //Rouge
+    }
+
+    if(test==6) {
+        mat1[a][b]='V'; //Vert
+   	}
+*/
