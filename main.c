@@ -39,9 +39,8 @@ int main()
 
 	nbCoup = nmbre_coup(m);
 
-	system("clear");
 
-	solveur(M, 3, nbCoup);
+	solveur(M, 2, nbCoup);
 
 	for (j = 0; j < m; ++j)
 	{
@@ -97,8 +96,6 @@ int main()
 				}
 			}
 		}
-
-		system("clear");
 
 		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
 		{

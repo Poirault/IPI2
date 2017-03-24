@@ -11,6 +11,7 @@
 
 #include "grille.h"
 #include "victoire.h"
+#include "coul-fct1_2.h"
 
 void solveur(matrix M, int m, int nbCoup);
 
