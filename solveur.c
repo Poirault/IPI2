@@ -82,7 +82,7 @@ void solveur(matrix M, int m, int nbCoup)
 	
 	} while (victoire(M, m, tour, nbCoup));
 
-	printf ("Une solution possible en %d coups est :", tour+1);
+	printf ("Une solution possible en %d coups est :", tour);
 	for (i=0; i<tour; i++) {
 		printf("%c, ", solution[i]);
 	}
