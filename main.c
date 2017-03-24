@@ -14,6 +14,7 @@
 #include "fonctions_utiles.h"
 #include "victoire.h"
 #include "couleur.h"
+#include "solveur.h"
 
 
 
@@ -25,8 +26,11 @@ int main()
 	char o,c;
 
 	matrix M;
-	
+
 	matrice T;
+
+
+
 
 	printf("Donnez la taille du jeu\n");
 	scanf("%d", &m);
@@ -36,6 +40,8 @@ int main()
 	nbCoup = nmbre_coup(m);
 
 	system("clear");
+
+	solveur(M, 3, nbCoup);
 
 	for (j = 0; j < m; ++j)
 	{
@@ -108,7 +114,7 @@ int main()
 		if (tour<=nbCoup) {
 			printf("Number tour : %d/%d \n", tour, nbCoup);
 		}
-
+		
 		f=victoire(M,m,tour,nbCoup);
 	}
 

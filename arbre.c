@@ -22,7 +22,7 @@ typedef struct t_narbre {
 #define NARBREVIDE NULL 
 
 
- NArbre nouvelNArbre(int info)
+ NArbre nouvelNArbre(char info)
  	{
  		
  		NNoeud*a;
@@ -68,7 +68,7 @@ void affNArbreRec(NArbre a, int j)
 		if(narbreVide(a)!=1)
 
 			{
-				printf("n%d [label=%d]\n", j, a->info);
+				printf("n%d [label=%c]\n", j, a->info);
 				if (j!=0)
 					{
 						printf("n%d -> n%d\n", (j-k)/10, j);
@@ -90,18 +90,16 @@ void affNArbreRec(NArbre a, int j)
  int main()
  {
  	
- 	NArbre a0, a1, a2;
+ 	NArbre a1;
 
-	a0 = nouvelNArbre(12);
+	a1=ajoutFils(ajoutFils(ajoutFils(ajoutFils(ajoutFils(ajoutFils(nouvelNArbre('R'),nouvelNArbre('J')),nouvelNArbre('M')),
+		nouvelNArbre('V')),nouvelNArbre('B')),nouvelNArbre('G'));
 
-	a1=ajoutFils(ajoutFils(ajoutFils(nouvelNArbre(1),nouvelNArbre(2)),nouvelNArbre(2)),nouvelNArbre(3));
+	
 
-	a2=ajoutFils(ajoutFils(ajoutFils(ajoutFils(ajoutFils(nouvelNArbre(2),nouvelNArbre(1)),nouvelNArbre(2))
-		,nouvelNArbre(2)),nouvelNArbre(3)),nouvelNArbre(4));
+	
 
-	a0 = ajoutFils(ajoutFils(a0, a1), a2);
-
-	affNArbreRec(a0, 0);	
+	affNArbreRec(a1, 0);	
 
 
 	return 0;

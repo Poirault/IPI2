@@ -13,3 +13,4 @@
 #include "victoire.h"
 
 void solveur(matrix M, int m, int nbCoup);
+
