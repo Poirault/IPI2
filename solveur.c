@@ -13,6 +13,7 @@
 #include "solveur.h"
 #include "victoire.h"
 
+
 void solveur(matrix M, int m, int nbCoup)
 {
 	int i,j,test;
@@ -81,9 +82,9 @@ void solveur(matrix M, int m, int nbCoup)
 	
 	} while (victoire(M, m, tour, nbCoup));
 
-	printf ("Une solution possible en %d coups est :", tour);
+	printf ("Une solution possible en %d coups est :", tour+1);
 	for (i=0; i<tour; i++) {
-		printf("%c ", solution[i]);
+		printf("%c, ", solution[i]);
 	}
 
 }
