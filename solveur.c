@@ -62,7 +62,19 @@ void solveur(matrix M, int m, int nbCoup)
 		if (tour == nbCoup) { // Si la solution n'a pas fonctionné 
 			tour = 0;
 			printf("On recommence\n");
-			M = P;
+			matrix T=NULL;
+			T=(char **)calloc(m, sizeof(char*));
+			for (i = 0; i < m; ++i)
+			{
+				T[i]=(char *)calloc(m, sizeof(char));
+			}
+
+			for(i=0; i<m; i++) {
+				for(j=0; j<m; j++) {
+					T[i][j] = P[i][j];
+				}
+			}
+			M = T;
 		}
 		test=rand_a_b(1,6);
             
@@ -118,7 +130,7 @@ void solveur(matrix M, int m, int nbCoup)
 		}
 
 
-		printf("Voici P (la grille de départ\n");
+		printf("Voici P (la grille de départ)\n");
 
 		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
 		{
