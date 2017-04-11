@@ -17,11 +17,77 @@
 #include "fonctions_utiles.h"
 
 
+char voisin_random(matrix M, int m) {
+	int test, i, j;
+
+	char c;
+
+	matrice T;
+
+	matrix P=NULL;
+	P=(char **)calloc(m, sizeof(char*));
+	for (i = 0; i < m; ++i)
+	{
+		P[i]=(char *)calloc(m, sizeof(char));
+	}
+
+	for(i=0; i<m; i++) {
+		for(j=0; j<m; j++) {
+			P[i][j] = M[i][j];
+		}
+	}
+
+	do {
+
+		test=rand_a_b(1,6);
+            
+		if(test==1) {
+      		c='B'; //Bleu
+   		}
+
+    	if(test==2) {
+      		c='G'; //Gris
+    	}
+
+   		if(test==3) {
+       		c='J'; //Jaune
+    	}
+
+   		if(test==4) {
+       		c='M'; //Marron
+    	}
+
+  		if(test==5) {
+       		c='R'; //Rouge
+    	}
+
+    	if(test==6) {
+      		c='V'; //Vert
+   		}
+
+		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
+
+		for (i = 0; i < m; ++i)
+		{
+			for (j = 0; j < m; ++j)
+			{
+				if(T[i][j]==1)
+				{
+					M[i][j]=c; //on a pas besoin de la fct coloreplace
+				}
+			}
+		}
+
+   	} while (M==P);
+
+   	return c;
+
+}
 
 
 void solveur(matrix M, int m, int nbCoup)
 {
-	int i,j,k,test;
+	int i,j,k;
 	
 	char solution[nbCoup];
 
@@ -38,10 +104,6 @@ void solveur(matrix M, int m, int nbCoup)
 		}
 	}
 
-	char c;
-
-	
-	matrice T;
 
 	for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
 		{
@@ -76,47 +138,8 @@ void solveur(matrix M, int m, int nbCoup)
 			}
 			M = T;
 		}
-		test=rand_a_b(1,6);
-            
-		if(test==1) {
-      		c='B'; //Bleu
-   		}
 
-    	if(test==2) {
-      		c='G'; //Gris
-    	}
-
-   		if(test==3) {
-       		c='J'; //Jaune
-    	}
-
-   		if(test==4) {
-       		c='M'; //Marron
-    	}
-
-  		if(test==5) {
-       		c='R'; //Rouge
-    	}
-
-    	if(test==6) {
-      		c='V'; //Vert
-   		}
-
-   		solution[tour]=c;
-
-
-		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
-
-		for (i = 0; i < m; ++i)
-		{
-			for (j = 0; j < m; ++j)
-			{
-				if(T[i][j]==1)
-				{
-					M[i][j]=c; //on a pas besoin de la fct coloreplace
-				}
-			}
-		}
+		solution[tour]=voisin_random(M, m);
 
 		printf("voici M :\n");
 

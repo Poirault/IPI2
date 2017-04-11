@@ -13,5 +13,7 @@
 #include "victoire.h"
 #include "coul-fct1_2.h"
 
+char voisin_random(matrix M, int m);
+
 void solveur(matrix M, int m, int nbCoup);
 
