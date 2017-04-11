@@ -40,7 +40,7 @@ int main()
 	nbCoup = nmbre_coup(m);
 
 
-	solveur(M, 2, nbCoup);
+	solveur(M, m, nbCoup);
 
 	for (j = 0; j < m; ++j)
 	{

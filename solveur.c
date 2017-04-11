@@ -92,15 +92,6 @@ void solveur(matrix M, int m, int nbCoup)
 
    		solution[tour]=c;
 
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				affich_couleur(M,j,k);
-			}
-		printf("\n");
-		}
-
 
 		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
 
@@ -115,6 +106,28 @@ void solveur(matrix M, int m, int nbCoup)
 			}
 		}
 
+		printf("voici M :\n");
+
+		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
+		{
+			for (k = 0; k < m; ++k)
+			{
+				affich_couleur(M,j,k);
+			}
+		printf("\n");
+		}
+
+
+		printf("Voici P (la grille de départ\n");
+
+		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
+		{
+			for (k = 0; k < m; ++k)
+			{
+				affich_couleur(P,j,k);
+			}
+		printf("\n");
+		}
 
 		
 		sleep(1);
