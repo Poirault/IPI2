@@ -114,22 +114,22 @@ matrice composante_conn(matrix M,char color,int m){
 			if(mat1[i][j]==1){
 				if (i<m-1){
 					if (M[i+1][j]==color){
-						mat1[i+1][j]=1;
+						mat1[i+1][j]=2;
 					}
 				}
 				if (i>0){
 					if (M[i-1][j]==color){
-						mat1[i-1][j]=1;
+						mat1[i-1][j]=2;
 					}
 				}
 				if (j<m-1){
 					if (M[i][j+1]==color){
-						mat1[i][j+1]=1;
+						mat1[i][j+1]=2;
 					}
 				}
 				if (j>0){
 					if (M[i][j-1]==color){
-						mat1[i][j-1]=1;
+						mat1[i][j-1]=2;
 					}
 				}
 			}
@@ -139,28 +139,28 @@ matrice composante_conn(matrix M,char color,int m){
 		q=1;
 		for(i=0;i<m;i++){
 			for(j=0;j<m;j++){
-				if(mat1[i][j]==1){
+				if(mat1[i][j]==2){
 					if (i<m-1){
-						if (M[i+1][j]==color && mat1[i+1][j]!=1){
-							mat1[i+1][j]=1;
+						if (M[i+1][j]==color && mat1[i+1][j]!=2){
+							mat1[i+1][j]=2;
 							q=2;
 						}
 					}
 					if (i>0){
-						if (M[i-1][j]==color && mat1[i-1][j]!=1){
-							mat1[i-1][j]=1;
+						if (M[i-1][j]==color && mat1[i-1][j]!=2){
+							mat1[i-1][j]=2;
 							q=2;
 						}
 					}
 					if (j<m-1){
-						if (M[i][j+1]==color && mat1[i][j+1]!=1){
-							mat1[i][j+1]=1;
+						if (M[i][j+1]==color && mat1[i][j+1]!=2){
+							mat1[i][j+1]=2;
 							q=2;
 						}
 					}
 					if (j>0){
-						if (M[i][j-1]==color && mat1[i][j-1]!=1){
-							mat1[i][j-1]=1;
+						if (M[i][j-1]==color && mat1[i][j-1]!=2){
+							mat1[i][j-1]=2;
 							q=2;
 						}
 					}

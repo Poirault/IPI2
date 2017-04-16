@@ -13,7 +13,9 @@
 #include "victoire.h"
 #include "coul-fct1_2.h"
 
-char voisin_random(matrix M, int m);
+void voisin_random(matrix M, int m, char c);
 
-void solveur(matrix M, int m, int nbCoup);
+int solveur(matrix M, int m, int nbCoup);
+
+int majoration(matrix M, int m, int nbCoup);
 
