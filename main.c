@@ -27,6 +27,7 @@ int main()
 
 	matrix M;
 
+
 	matrice T;
 
 
@@ -37,10 +38,23 @@ int main()
 
 	M=grille(m);
 
+	matrix P=NULL;
+	P=(char **)calloc(m, sizeof(char*));
+	for (j = 0; j < m; ++j)
+	{
+		P[j]=(char *)calloc(m, sizeof(char));
+	}
+
+	for(j=0; j<m; j++) {
+		for(k=0; k<m; k++) {
+			P[j][k] = M[j][k];
+		}
+	}
+
 	nbCoup = nmbre_coup(m);
 
 
-	solveur(M, 2, nbCoup);
+	solveur(P, m, nbCoup);
 
 	for (j = 0; j < m; ++j)
 	{
@@ -90,7 +104,7 @@ int main()
 		{
 			for (k = 0; k < m; ++k)
 			{
-				if(T[j][k]==1)
+				if(T[j][k]==1 || T[j][k]==2)
 				{
 					M[j][k]=c; //on a pas besoin de la fct coloreplace
 				}

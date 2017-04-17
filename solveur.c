@@ -16,16 +16,54 @@
 #include "coul-fct1_2.h"
 #include "fonctions_utiles.h"
 
+void voisin_random(matrix M, int m, char c) {
+	int i, j;
+
+	matrice T;
+
+	matrix P=NULL;
+	P=(char **)calloc(m, sizeof(char*));
+	for (i = 0; i < m; ++i)
+	{
+		P[i]=(char *)calloc(m, sizeof(char));
+	}
+
+	for(i=0; i<m; i++) {
+		for(j=0; j<m; j++) {
+			P[i][j] = M[i][j];
+		}
+	}
+
+	T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
+
+	for (i = 0; i < m; ++i)
+	{
+		for (j = 0; j < m; ++j)
+		{
+			if((T[i][j]==1) || (T[i][j]==2))
+			{
+				M[i][j]=c; 
+			}
+		}
+	}
+
+}
 
 
-
-void solveur(matrix M, int m, int nbCoup)
+int solveur(matrix M, int m, int nbCoup)
 {
-	int i,j,k,test;
+	int i,j,k, test, s;
+
+	char c;
 	
 	char solution[nbCoup];
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+	matrice T;
+
+>>>>>>> master
 	matrix P=NULL;
 	P=(char **)calloc(m, sizeof(char*));
 	for (i = 0; i < m; ++i)
@@ -43,10 +81,6 @@ void solveur(matrix M, int m, int nbCoup)
 	matrix O = M;
 >>>>>>> Stashed changes
 
-	char c;
-
-	
-	matrice T;
 
 	for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
 		{
@@ -64,6 +98,8 @@ void solveur(matrix M, int m, int nbCoup)
 
 	while (victoire(M, m, tour, nbCoup)!=0){ //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
 		
+		s = 0;
+
 		if (tour == nbCoup) { // Si la solution n'a pas fonctionné 
 			tour = 0;
 <<<<<<< Updated upstream
@@ -72,8 +108,21 @@ void solveur(matrix M, int m, int nbCoup)
 
 >>>>>>> Stashed changes
 			printf("On recommence\n");
-			M = P;
+			matrix T=NULL;
+			T=(char **)calloc(m, sizeof(char*));
+			for (i = 0; i < m; ++i)
+			{
+				T[i]=(char *)calloc(m, sizeof(char));
+			}
+
+			for(i=0; i<m; i++) {
+				for(j=0; j<m; j++) {
+					T[i][j] = P[i][j];
+				}
+			}
+			M = T;
 		}
+
 		test=rand_a_b(1,6);
             
 		if(test==1) {
@@ -100,8 +149,9 @@ void solveur(matrix M, int m, int nbCoup)
       		c='V'; //Vert
    		}
 
-   		solution[tour]=c;
+   		T=composante_conn(M,c,m);
 
+<<<<<<< HEAD
    		printf("Voici M\n");
 		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
 		{
@@ -136,26 +186,44 @@ void solveur(matrix M, int m, int nbCoup)
 		}
 
 >>>>>>> Stashed changes
+=======
+   		for (i=0; i<m; i++) {
+   			for (j=0; j<m; j++) {
+   				if (T[i][j]==2) {
+   					s++;
+   				}
+   			}
+   		}
 
-		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
+   		if (s!=0) {
+>>>>>>> master
 
-		for (i = 0; i < m; ++i)
-		{
-			for (j = 0; j < m; ++j)
-			{
-				if(T[i][j]==1)
+	   			voisin_random(M, m, c);
+
+				solution[tour]=c;
+
+				printf("voici M :\n");
+
+				for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
 				{
-					M[i][j]=c; //on a pas besoin de la fct coloreplace
+					for (k = 0; k < m; ++k)
+					{
+						affich_couleur(M,j,k);
+					}
+				printf("\n");
 				}
-			}
-		}
+				
+				sleep(1);
 
+				tour++;
+				printf("On est au tour: %d\n", tour);
 
-		
-		sleep(1);
+   		}
 
-		tour++;
-		printf("On est au tour: %d\n", tour);
+   		else {
+   			printf("On est toujour au tour: %d\n", tour);
+   		}
+
 	
 	} 
 
@@ -163,8 +231,22 @@ void solveur(matrix M, int m, int nbCoup)
 	for (i=0; i<tour; i++) {
 		printf("%c, ", solution[i]);
 	}
-	printf("\n");
+	printf("\n Maintenant à vous de jouer ! \n");
 
+	return tour;
+}
+
+
+int majoration(matrix M, int m, int nbCoup) {
+	int min = nbCoup, i, test;
+
+	for (i=0; i<1000; i++) {
+		test = solveur (M, m, nbCoup);
+		if (test < min) {
+			min = test;
+		}
+	}
+	return min;
 }
 
 
