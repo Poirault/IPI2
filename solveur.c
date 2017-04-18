@@ -52,7 +52,7 @@ void voisin_random(matrix M, int m, char c) {
 
 int solveur(matrix M, int m, int nbCoup)
 {
-	int i,j,k, test, s;
+	int i,j,/*k,*/ test, s;
 
 	char c;
 	
@@ -74,16 +74,6 @@ int solveur(matrix M, int m, int nbCoup)
 	}
 
 
-	for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				affich_couleur(M,j,k);
-			}
-		printf("\n");
-		}
-	printf("\n");
-
 	
  
 	int tour=0;	
@@ -94,7 +84,7 @@ int solveur(matrix M, int m, int nbCoup)
 
 		if (tour == nbCoup) { // Si la solution n'a pas fonctionné 
 			tour = 0;
-			printf("On recommence\n");
+			//printf("On recommence\n");
 			matrix T=NULL;
 			T=(char **)calloc(m, sizeof(char*));
 			for (i = 0; i < m; ++i)
@@ -151,7 +141,7 @@ int solveur(matrix M, int m, int nbCoup)
 	   			voisin_random(M, m, c);
 
 				solution[tour]=c;
-
+				/*
 				printf("voici M :\n");
 
 				for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
@@ -162,17 +152,17 @@ int solveur(matrix M, int m, int nbCoup)
 					}
 				printf("\n");
 				}
-				
-				sleep(1);
+				*/
 
 				tour++;
-				printf("On est au tour: %d\n", tour);
+				//printf("On est au tour: %d\n", tour);
 
    		}
-
+   		/*
    		else {
    			printf("On est toujour au tour: %d\n", tour);
    		}
+   		*/
 
 	
 	} 
@@ -181,7 +171,7 @@ int solveur(matrix M, int m, int nbCoup)
 	for (i=0; i<tour; i++) {
 		printf("%c, ", solution[i]);
 	}
-	printf("\n Maintenant à vous de jouer ! \n");
+	printf("\n      Maintenant à vous de jouer ! \n");
 
 	return tour;
 }
