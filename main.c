@@ -134,10 +134,12 @@ int main()
 			
 			free(M[j]);
 			free(T[j]);
+			free(P[j]);
 		
 		}
 		free(M);
 		free(T);
+		free(P);
 	
 
 	return 0;
