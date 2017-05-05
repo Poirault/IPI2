@@ -41,3 +41,4 @@ int victoire(matrix M,int m, int tour, int nbCoup)
 	return(vict);
 }
 
+ //$(CC) testSDL.o $(LDFLAGS) -o testSDL 
