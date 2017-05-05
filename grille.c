@@ -40,7 +40,7 @@ matrix grille(int m)
         for (b = 0; b < m; ++b)
         {
             test=0;
-            test=rand_a_b(1,6);
+            test=rand_a_b(1,7);
             
             if(test==1)
             {
@@ -48,7 +48,7 @@ matrix grille(int m)
             }
             if(test==2)
             {
-            	mat1[a][b]='G'; //Gris
+                mat1[a][b]='G'; //Gris
             }
             if(test==3)
             {
@@ -64,7 +64,7 @@ matrix grille(int m)
             }
             if(test==6)
             {
-            	mat1[a][b]='V'; //Vert
+                mat1[a][b]='V'; //Vert
             }
                      
         }

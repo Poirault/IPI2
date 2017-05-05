@@ -37,6 +37,17 @@ int main()
 	scanf("%d", &m);
 
 	M=grille(m);
+	printf("BITE BITE");
+	
+	for (j = 0; j < m; ++j)
+	{
+		for (k = 0; k < m; ++k)
+		{
+			
+			affich_couleur(M,j,k); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
+		}
+	printf("\n");
+	
 
 	matrix P=NULL;
 	P=(char **)calloc(m, sizeof(char*));
@@ -56,14 +67,8 @@ int main()
 
 	solveur(P, m, nbCoup);
 
-	for (j = 0; j < m; ++j)
-	{
-		for (k = 0; k < m; ++k)
-		{
-			
-			affich_couleur(M,j,k); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
-		}
-	printf("\n");
+
+
 
 	} printf("Number tour : %d/%d \n", tour, nbCoup);
 
@@ -134,12 +139,12 @@ int main()
 			
 			free(M[j]);
 			free(T[j]);
-			free(P[j]);
+			
 		
 		}
 		free(M);
 		free(T);
-		free(P);
+		
 	
 
 	return 0;

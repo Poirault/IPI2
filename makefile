@@ -14,7 +14,6 @@ COBJ = $(CSRC: .c=.o)
 	$(CC) $(CFLAGS) -c $*.c
 
 
-
 prog:
 	$(CC) -o $(APPLI) main_prog.c coul-fct1_2.c victoire.c grille.c fonctions_utiles.c solveur.c -o prog -lm
 
