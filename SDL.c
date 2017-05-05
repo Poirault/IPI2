@@ -290,47 +290,75 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 	
 				if(y >= (size_window*(0.0/6)+20) && y < (size_window*(0.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
+<<<<<<< Updated upstream
 					modif_color(T, 'G', nbr_coups_max);
+=======
+					modif_color(0, 0, 'G', ancienne_couleur, T, size);
+>>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(1.0/6)+20) && y < (size_window*(1.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
+<<<<<<< Updated upstream
 					modif_color(T, 'R', nbr_coups_max);
+=======
+					modif_color(0, 0, 'R', ancienne_couleur, T, size);
+>>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(2.0/6)+20) && y < (size_window*(2.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
+<<<<<<< Updated upstream
 					modif_color(T, 'J', nbr_coups_max);
+=======
+					modif_color(0, 0, 'J', ancienne_couleur, T, size);
+>>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(3.0/6)+20) && y < (size_window*(3.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
+<<<<<<< Updated upstream
 					modif_color(T, 'V', nbr_coups_max);
+=======
+					modif_color(0, 0, 'V', ancienne_couleur, T, size);
+>>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(4.0/6)+20) && y < (size_window*(4.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
+<<<<<<< Updated upstream
 					modif_color(T, 'B', nbr_coups_max);
+=======
+					modif_color(0, 0, 'B', ancienne_couleur, T, size);
+>>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(5.0/6)+20) && y < (size_window*(5.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
+<<<<<<< Updated upstream
 					modif_color(T, 'M', nbr_coups_max);
+=======
+					modif_color(0, 0, 'M', ancienne_couleur, T, size);
+>>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				// solveur
+<<<<<<< Updated upstream
 				/*
+=======
+>>>>>>> Stashed changes
 				if(y >= (size_window/2.0+100) && y < (size_window/2.0+100+cons) && x >= (size_window*(3/2.0)+80) && x < (size_window*(3/2.0)+80+cons))
 				{	
 					sprintf(solveur_info, "Solveur en cours...");
 					texte1 = TTF_RenderUTF8_Blended(police, solveur_info, texteNoir);
 					SDL_BlitSurface(texte1, NULL, ecran, &position1);
+<<<<<<< Updated upstream
 					SDL_Flip(ecran); 
 				*/
 					/*chemin = solveur_perf(T, size, &nbr_coups_min);*/
@@ -339,6 +367,12 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 				*/
 					/*solveur_box(ecran,chemin,nbr_coups_min);*/
 				/*
+=======
+					SDL_Flip(ecran);
+					/*chemin = solveur_perf(T, size, &nbr_coups_min);*/
+					SDL_FreeSurface(texte1);
+					/*solveur_box(ecran,chemin,nbr_coups_min);*/
+>>>>>>> Stashed changes
 					sprintf(solveur_info, "Solution possible :");
 					texte2 = TTF_RenderUTF8_Blended(police, solveur_info, texteNoir);
 					SDL_BlitSurface(texte2, NULL, ecran, &position1);
@@ -346,7 +380,10 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 					flip = true;
 					free(chemin);
 				}
+<<<<<<< Updated upstream
 				*/
+=======
+>>>>>>> Stashed changes
 				// bouton menu
 				if(y >= 25 && y < (25+cons) && x >= size_window*(3/2.0)+40 && x < (size_window*(3/2.0)+40+cons))
 				{
@@ -454,9 +491,14 @@ int main()
 	police2 = TTF_OpenFont("orkney.ttf", 50);
 	police3 = TTF_OpenFont("orkney.ttf", 70);
 
+<<<<<<< Updated upstream
 //	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
 
 
+=======
+	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
+	
+>>>>>>> Stashed changes
 	do 
 		{
 			/*ecran = menu(police1, police2, police3, &size, &difficulte, &nbr_coups_max, &border_flag);*/
