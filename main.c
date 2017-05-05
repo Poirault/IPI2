@@ -1,3 +1,14 @@
+#include "SDL.h"
+#include "coul-fct1_2.h"
+#include "grille.h"
+#include "fonctions_utiles.h"
+#include "victoire.h"
+#include "couleur.h"
+#include "solveur.h"
+
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
+
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -9,139 +20,88 @@
 #include <time.h>
 #include <string.h>
 
-#include "coul-fct1_2.h"
-#include "grille.h"
-#include "fonctions_utiles.h"
-#include "victoire.h"
-#include "couleur.h"
-#include "solveur.h"
 
 
 
 int main()
 {
-	int j,k,m,f,g, nbCoup, tour = 0;
-	f=1;
+	int size = 0, difficulte = 0, nbr_coup = 0, nbr_coups_max = 0, bouton, out;
+	int size_window = 0;	/*taille de la fenetre dépendra de size*/
+	matrix T;
+	bool border_flag;
+	char nbr_coup_texte[50];
 
-	char o,c;
+	SDL_Surface *ecran = NULL;
+	TTF_Font *police1 = NULL, *police2 = NULL, *police3 = NULL;
 
-	matrix M;
-
-
-	matrice T;
-
-
-
-
-	printf("Donnez la taille du jeu\n");
-	scanf("%d", &m);
-
-	M=grille(m);
-
-	matrix P=NULL;
-	P=(char **)calloc(m, sizeof(char*));
-	for (j = 0; j < m; ++j)
+	/*initialisation da la SDL*/
+	const SDL_VideoInfo *info = NULL;
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		P[j]=(char *)calloc(m, sizeof(char));
+		fprintf(stderr, "Video initialization failed: %s\n", SDL_GetError());
+		SDL_Quit();
 	}
-
-	for(j=0; j<m; j++) {
-		for(k=0; k<m; k++) {
-			P[j][k] = M[j][k];
-		}
-	}
-
-	nbCoup = nmbre_coup(m);
-
-
-	solveur(P, m, nbCoup);
-
-	for (j = 0; j < m; ++j)
+	info = SDL_GetVideoInfo();
+	if(!info)
 	{
-		for (k = 0; k < m; ++k)
+		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
+		SDL_Quit();
+	}
+	/*fin d'initialisation de la SDL*/ 
+
+	TTF_Init();
+
+	police1 = TTF_OpenFont("orkney.ttf", 20);
+	police2 = TTF_OpenFont("orkney.ttf", 50);
+	police3 = TTF_OpenFont("orkney.ttf", 70);
+
+//	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
+
+
+	do 
 		{
-			
-			affich_couleur(M,j,k); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
-		}
-	printf("\n");
+			/*ecran = menu(police1, police2, police3, &size, &difficulte, &nbr_coups_max, &border_flag);*/
 
-	} printf("Number tour : %d/%d \n", tour, nbCoup);
-
-	while((f!=0) && (f!=2)) { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
-		g=1;
-		printf("Choisissez une couleur\n");
-		while(g!=0){
-			o=getche();
-			if(o=='b'){
-				c='B';
-				g=0;
-			}
-			if(o=='g'){
-				c='G';
-				g=0;
-			}
-			if(o=='j'){
-				c='J';
-				g=0;
-			}
-			if(o=='m'){
-				c='M';
-				g=0;
-			}
-			if(o=='r'){
-				c='R';
-				g=0;
-			}
-			if(o=='v'){
-				c='V';
-				g=0;
-			}
-		}
-		
-		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
-
-		for (j = 0; j < m; ++j)
-		{
-			for (k = 0; k < m; ++k)
-			{
-				if(T[j][k]==1 || T[j][k]==2)
+			if (size != 0)
 				{
-					M[j][k]=c; //on a pas besoin de la fct coloreplace
+					T = grille(size);
+					/*matrix grille_sol = copie(grille, size);*/
+					matrix grille_copie;
+
+					/*solution_rapide(grille_sol, size, &nbr_coups_max);*/	/*utile pour le niveau de difficulté*/
+					
+					nbr_coups_max += 5/difficulte; /*niveau de difficulté*/
+					do 
+						{
+							/*grille_copie = copie(M, size);*/
+							size_window = 500;
+							ecran = initialize_screen(size_window);
+
+							sprintf(nbr_coup_texte, "%d/%d", nbr_coup, nbr_coups_max);
+
+							initialize_text(ecran, nbr_coup_texte, police1);
+							
+							display_SDL(ecran, T, size, size_window, border_flag);
+
+							nbr_coup = loop_game(ecran, T, size, nbr_coups_max, nbr_coup_texte, police1, size_window, border_flag, &bouton, &out);
+
+							end_game(ecran, T, size, nbr_coup, nbr_coups_max, police2);
+
+							T = grille_copie;
+						} while (bouton == 2 && out != 1);
+
+					/*free_space(T, size);*/
+					/*free_space(grille_sol, size);*/
+					/*free_space(plateau_copie, size); FAIT PLANTER LE MENU*/
 				}
-			}
-		}
+		} while (bouton == 1 && size != 0 && out != 1);
 
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				
-				affich_couleur(M,j,k);
-			}
-		printf("\n");
-		}
+	TTF_CloseFont(police1);
+	TTF_CloseFont(police2);
+	TTF_CloseFont(police3);
+	TTF_Quit();
 
-		tour++;
-		if (tour<=nbCoup) {
-			printf("Number tour : %d/%d \n", tour, nbCoup);
-		}
-		
-		f=victoire(M,m,tour,nbCoup);
-	}
-
-	for (j = 0; j < m; ++j) //Libération d'espace mémoire
-		{
-			
-			free(M[j]);
-			free(T[j]);
-			free(P[j]);
-		
-		}
-		free(M);
-		free(T);
-		free(P);
-	
+	SDL_Quit();
 
 	return 0;
-
 }

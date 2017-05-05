@@ -58,12 +58,8 @@ int solveur(matrix M, int m, int nbCoup)
 	
 	char solution[nbCoup];
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 	matrice T;
 
->>>>>>> master
 	matrix P=NULL;
 	P=(char **)calloc(m, sizeof(char*));
 	for (i = 0; i < m; ++i)
@@ -76,10 +72,6 @@ int solveur(matrix M, int m, int nbCoup)
 			P[i][j] = M[i][j];
 		}
 	}
-=======
-	matrix P = M;
-	matrix O = M;
->>>>>>> Stashed changes
 
 
 	
@@ -92,16 +84,7 @@ int solveur(matrix M, int m, int nbCoup)
 
 		if (tour == nbCoup) { // Si la solution n'a pas fonctionné 
 			tour = 0;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-			M=O;
-
->>>>>>> Stashed changes
-			printf("On recommence\n");
-=======
 			//printf("On recommence\n");
->>>>>>> master
 			matrix T=NULL;
 			T=(char **)calloc(m, sizeof(char*));
 			for (i = 0; i < m; ++i)
@@ -145,42 +128,6 @@ int solveur(matrix M, int m, int nbCoup)
 
    		T=composante_conn(M,c,m);
 
-<<<<<<< HEAD
-   		printf("Voici M\n");
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				affich_couleur(M,j,k);
-			}
-		printf("\n");
-		}
-
-<<<<<<< Updated upstream
-=======
-
-		printf("Voici P\n");
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				affich_couleur(P,j,k);
-			}
-		printf("\n");
-		}
-
-		printf("Voici O\n");
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				affich_couleur(O,j,k);
-			}
-		printf("\n");
-		}
-
->>>>>>> Stashed changes
-=======
    		for (i=0; i<m; i++) {
    			for (j=0; j<m; j++) {
    				if (T[i][j]==2) {
@@ -190,7 +137,6 @@ int solveur(matrix M, int m, int nbCoup)
    		}
 
    		if (s!=0) {
->>>>>>> master
 
 	   			voisin_random(M, m, c);
 

@@ -1,4 +1,15 @@
 #include "SDL.h"
+#include "coul-fct1_2.h"
+#include "grille.h"
+#include "fonctions_utiles.h"
+#include "victoire.h"
+#include "couleur.h"
+#include "solveur.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
+#include <math.h>
+#include <stdbool.h>
+
 
 
 
@@ -290,75 +301,47 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 	
 				if(y >= (size_window*(0.0/6)+20) && y < (size_window*(0.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
-<<<<<<< Updated upstream
 					modif_color(T, 'G', nbr_coups_max);
-=======
-					modif_color(0, 0, 'G', ancienne_couleur, T, size);
->>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(1.0/6)+20) && y < (size_window*(1.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
-<<<<<<< Updated upstream
 					modif_color(T, 'R', nbr_coups_max);
-=======
-					modif_color(0, 0, 'R', ancienne_couleur, T, size);
->>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(2.0/6)+20) && y < (size_window*(2.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
-<<<<<<< Updated upstream
 					modif_color(T, 'J', nbr_coups_max);
-=======
-					modif_color(0, 0, 'J', ancienne_couleur, T, size);
->>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(3.0/6)+20) && y < (size_window*(3.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
-<<<<<<< Updated upstream
 					modif_color(T, 'V', nbr_coups_max);
-=======
-					modif_color(0, 0, 'V', ancienne_couleur, T, size);
->>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(4.0/6)+20) && y < (size_window*(4.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
-<<<<<<< Updated upstream
 					modif_color(T, 'B', nbr_coups_max);
-=======
-					modif_color(0, 0, 'B', ancienne_couleur, T, size);
->>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				if(y >= (size_window*(5.0/6)+20) && y < (size_window*(5.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
 				{
-<<<<<<< Updated upstream
 					modif_color(T, 'M', nbr_coups_max);
-=======
-					modif_color(0, 0, 'M', ancienne_couleur, T, size);
->>>>>>> Stashed changes
 					nbr_coup++;
 					flip = true;
 				}
 				// solveur
-<<<<<<< Updated upstream
 				/*
-=======
->>>>>>> Stashed changes
 				if(y >= (size_window/2.0+100) && y < (size_window/2.0+100+cons) && x >= (size_window*(3/2.0)+80) && x < (size_window*(3/2.0)+80+cons))
 				{	
 					sprintf(solveur_info, "Solveur en cours...");
 					texte1 = TTF_RenderUTF8_Blended(police, solveur_info, texteNoir);
 					SDL_BlitSurface(texte1, NULL, ecran, &position1);
-<<<<<<< Updated upstream
 					SDL_Flip(ecran); 
 				*/
 					/*chemin = solveur_perf(T, size, &nbr_coups_min);*/
@@ -367,12 +350,6 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 				*/
 					/*solveur_box(ecran,chemin,nbr_coups_min);*/
 				/*
-=======
-					SDL_Flip(ecran);
-					/*chemin = solveur_perf(T, size, &nbr_coups_min);*/
-					SDL_FreeSurface(texte1);
-					/*solveur_box(ecran,chemin,nbr_coups_min);*/
->>>>>>> Stashed changes
 					sprintf(solveur_info, "Solution possible :");
 					texte2 = TTF_RenderUTF8_Blended(police, solveur_info, texteNoir);
 					SDL_BlitSurface(texte2, NULL, ecran, &position1);
@@ -380,10 +357,7 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 					flip = true;
 					free(chemin);
 				}
-<<<<<<< Updated upstream
 				*/
-=======
->>>>>>> Stashed changes
 				// bouton menu
 				if(y >= 25 && y < (25+cons) && x >= size_window*(3/2.0)+40 && x < (size_window*(3/2.0)+40+cons))
 				{
@@ -459,90 +433,3 @@ void end_game(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nbr_coup
 
 
 
-int main()
-{
-	int size = 0, difficulte = 0, nbr_coup = 0, nbr_coups_max = 0, bouton, out;
-	int size_window = 0;	/*taille de la fenetre dépendra de size*/
-	matrix T;
-	bool border_flag;
-	char nbr_coup_texte[50];
-
-	SDL_Surface *ecran = NULL;
-	TTF_Font *police1 = NULL, *police2 = NULL, *police3 = NULL;
-
-	/*initialisation da la SDL*/
-	const SDL_VideoInfo *info = NULL;
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		fprintf(stderr, "Video initialization failed: %s\n", SDL_GetError());
-		SDL_Quit();
-	}
-	info = SDL_GetVideoInfo();
-	if(!info)
-	{
-		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
-		SDL_Quit();
-	}
-	/*fin d'initialisation de la SDL*/ 
-
-	TTF_Init();
-
-	police1 = TTF_OpenFont("orkney.ttf", 20);
-	police2 = TTF_OpenFont("orkney.ttf", 50);
-	police3 = TTF_OpenFont("orkney.ttf", 70);
-
-<<<<<<< Updated upstream
-//	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
-
-
-=======
-	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
-	
->>>>>>> Stashed changes
-	do 
-		{
-			/*ecran = menu(police1, police2, police3, &size, &difficulte, &nbr_coups_max, &border_flag);*/
-
-			if (size != 0)
-				{
-					T = grille(size);
-					/*matrix grille_sol = copie(grille, size);*/
-					matrix grille_copie;
-
-					/*solution_rapide(grille_sol, size, &nbr_coups_max);*/	/*utile pour le niveau de difficulté*/
-					
-					nbr_coups_max += 5/difficulte; /*niveau de difficulté*/
-					do 
-						{
-							/*grille_copie = copie(M, size);*/
-							size_window = 500;
-							ecran = initialize_screen(size_window);
-
-							sprintf(nbr_coup_texte, "%d/%d", nbr_coup, nbr_coups_max);
-
-							initialize_text(ecran, nbr_coup_texte, police1);
-							
-							display_SDL(ecran, T, size, size_window, border_flag);
-
-							nbr_coup = loop_game(ecran, T, size, nbr_coups_max, nbr_coup_texte, police1, size_window, border_flag, &bouton, &out);
-
-							end_game(ecran, T, size, nbr_coup, nbr_coups_max, police2);
-
-							T = grille_copie;
-						} while (bouton == 2 && out != 1);
-
-					/*free_space(T, size);*/
-					/*free_space(grille_sol, size);*/
-					/*free_space(plateau_copie, size); FAIT PLANTER LE MENU*/
-				}
-		} while (bouton == 1 && size != 0 && out != 1);
-
-	TTF_CloseFont(police1);
-	TTF_CloseFont(police2);
-	TTF_CloseFont(police3);
-	TTF_Quit();
-
-	SDL_Quit();
-
-	return 0;
-}
