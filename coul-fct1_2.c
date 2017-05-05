@@ -176,6 +176,25 @@ matrice composante_conn(matrix M,char color,int m){
 	retour de la matrice de coloriage les 1 et 2 sont à colorier le reste (0) sont à laisser tel quel chez la mat de char 
 	*/
 }
+
+
+void modif_color(matrix M, char color, int m)
+{
+	matrice T = composante_conn(M,color,m);
+	int k, j;
+
+	for (j = 0; j < m; ++j)
+	{
+		for (k = 0; k < m; ++k)
+		{
+			if(T[j][k]==1 || T[j][k]==2)
+			{
+				M[j][k]=color;
+			}
+		}
+	}
+
+}
 		
 						
 	

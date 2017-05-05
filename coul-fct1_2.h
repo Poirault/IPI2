@@ -44,3 +44,6 @@ matrix coloreplace(matrix M,coord c,char color,int m);
  /brief Renvoie une matrice d'entier donnant les cases à colorier (pas du tout optimal)
 */
 matrice composante_conn(matrix M,char color,int m);
+
+
+void modif_color(matrix M, char color, int m);
