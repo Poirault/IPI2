@@ -1,14 +1,4 @@
 #include "SDL.h"
-#include "coul-fct1_2.h"
-#include "grille.h"
-#include "fonctions_utiles.h"
-#include "victoire.h"
-#include "couleur.h"
-#include "solveur.h"
-#include <SDL/SDL.h>
-#include <SDL/SDL_ttf.h>
-#include <math.h>
-#include <stdbool.h>
 
 
 
@@ -33,10 +23,10 @@ void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window)
 	size_window=size_window-9;
 
 	RGB J = {255, 247, 0}; //Jaune
-	RGB R = {255, 0, 0 };  //Rougr
+	RGB R = {255, 0, 0 };  //Rouge
 	RGB G = {169, 143, 100}; //Gris
-	RGB V = {85, 107, 47}; //Vert
-	RGB B = {255,255,102}; //Bleu
+	RGB V = {0, 255, 0}; //Vert
+	RGB B = {0,0,255}; //Bleu
 	RGB M = {255, 153, 102}; //Magenta
 
 	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 245, 240, 240));
@@ -79,6 +69,160 @@ void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window)
 	SDL_Flip(ecran);
 }
 
+SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, int nbr_coups_max)
+{
+	SDL_Surface *ecran, *nom_jeu, *taille_jeu, *niveau_jeu, *facile, *normal, *expert, *icone_plus, *icone_moins, *icone_jouer;
+	SDL_Event event;
+	SDL_Rect position_nom_jeu, position_taille_jeu, position_niveau_jeu, position_facile, position_normal, position_expert;
+	SDL_Rect position_plus, position_moins, position_jouer;
+	SDL_Color couleur_texte_W = {255, 255, 255, 42}, couleur_texte_G = {51, 51, 51, 42};
+
+	bool flip = true;
+	int continuer = 1, compteur = 3;
+	int nbr_coup=0;
+	char compteur_txt[50];
+
+	position_nom_jeu.x = 41;
+	position_nom_jeu.y = 5;
+	position_taille_jeu.x = 78;
+	position_taille_jeu.y = 100;
+	position_niveau_jeu.x = 125;
+	position_niveau_jeu.y = 195;
+
+	position_facile.x = 62;
+	position_facile.y = 274;
+	position_normal.x = 184;
+	position_normal.y = 274;
+	position_expert.x = 326;
+	position_expert.y = 274;
+	position_plus.x = 308;
+	position_plus.y = 88;
+	position_moins.x = 308;
+	position_moins.y = 132;
+	position_jouer.x = 176;
+	position_jouer.y = 352;
+
+	int background_size = 10, i = 0;
+	matrix T = grille(background_size);
+
+	int size_window = 440;
+	ecran = SDL_SetVideoMode(size_window, size_window, 32, SDL_HWSURFACE); /*fenêtre au début à cette taille par défaut*/
+	SDL_WM_SetCaption("Menu ColorFlood", NULL);
+
+	nom_jeu = TTF_RenderUTF8_Blended(police_grande, "ColorFlood", couleur_texte_G);
+
+	icone_plus = SDL_LoadBMP("img/plus.bmp");
+	icone_moins = SDL_LoadBMP("img/moins.bmp");
+	icone_jouer = SDL_LoadBMP("img/jouer.bmp");
+
+	int time_between_moves = 875;
+	/*grille plateau_sol = copie(plateau,background_size);*/
+	char* chemin = malloc(100*sizeof(char));
+	/*chemin = solution_rapide(plateau_sol, background_size, nbr_coups_max);*/
+	//free_space(plateau_sol, background_size);
+	
+
+	/*Mix_Music *musique; //Création du pointeur de type Mix_Music
+	musique = Mix_LoadMUS("son/musique_menu.mp3"); //Chargement de la musique
+	Mix_VolumeMusic(30);
+	Mix_PlayMusic(musique, -1);*/
+
+
+	unsigned long time = SDL_GetTicks();
+	unsigned long time_next_move = time + time_between_moves;
+	while(continuer)
+	{
+		while(SDL_PollEvent(&event))
+		{
+			switch(event.type)
+			{
+				case SDL_QUIT:
+				*size = 0;
+				continuer = 0;
+				break;
+
+				case SDL_KEYDOWN:
+				switch(event.key.keysym.sym)
+				{
+					case SDLK_ESCAPE:	/*touche échap*/
+					*size = 0;
+					continuer = 0;
+					break;
+					default:
+					break;
+				}
+
+				case SDL_MOUSEBUTTONDOWN:
+				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					int x = event.button.x;
+					int y = event.button.y;
+					if(x >= 308 && x < 352)
+					{
+						if(y >= 88 && y < 132 && compteur < 24)
+							compteur++;
+						else if(y >= 132 && y < 176 && compteur > 3)
+							compteur--;
+						flip = true;
+					}
+					else if(x >= 176 && x < 264 && y >= 352 && y < 440)
+					{
+						*size = compteur;
+						continuer = 0;
+					}
+				}
+			}
+		}
+		if(time > time_next_move)
+		{
+			if(victoire(T, background_size,nbr_coup, nbr_coups_max ) != 0)
+			{
+				time_next_move = time + time_between_moves;
+				char couleur = chemin[i];
+				i++;
+				modif_color(T,couleur,background_size);
+				flip = true;
+			}
+			else
+			{
+				
+				i = 0;
+				T = grille(background_size);
+			}
+		}
+
+		if(flip)
+		{
+			flip = false;
+			display_menu(ecran, T, background_size, size_window);
+			sprintf(compteur_txt, "Taille : %2d", compteur);
+			taille_jeu = TTF_RenderUTF8_Blended(police_moyenne, compteur_txt, couleur_texte_G);
+			SDL_BlitSurface(nom_jeu, NULL, ecran, &position_nom_jeu);
+			SDL_BlitSurface(taille_jeu, NULL, ecran, &position_taille_jeu);
+			SDL_BlitSurface(icone_plus, NULL, ecran, &position_plus);
+			SDL_BlitSurface(icone_moins, NULL, ecran, &position_moins);
+			SDL_BlitSurface(icone_jouer, NULL, ecran, &position_jouer);
+			SDL_Flip(ecran);
+		}
+
+		unsigned long new_time = SDL_GetTicks();
+		unsigned long elapsed_time = new_time - time;
+		if(elapsed_time < 1000/60)
+		{
+			SDL_Delay(1000/60 - elapsed_time);
+		}
+		time = new_time;
+	}
+	/*free_space(plateau, background_size);*/
+	SDL_FreeSurface(nom_jeu);
+	SDL_FreeSurface(taille_jeu);
+	SDL_FreeSurface(icone_plus);
+	SDL_FreeSurface(icone_moins);
+	SDL_FreeSurface(icone_jouer);
+	/*Mix_FreeMusic(musique);*/
+	return ecran;
+}
+
 
 void drawTexture(SDL_Surface *ecran, int px, int py, SDL_Surface *ima) {
 	SDL_Rect rect;
@@ -96,7 +240,7 @@ SDL_Surface *initialize_screen(int size_window)
 
 	ecran = SDL_SetVideoMode(2*size_window, size_window+120, 8, SDL_HWSURFACE);
 	/* nom de la fenêtre */
-	SDL_WM_SetCaption("ColorFlood (THOR)", NULL);
+	SDL_WM_SetCaption("ColorFlood (Les âmes perdues)", NULL);
 
 	/*
 	SDL_Rect positionFond;
@@ -164,10 +308,10 @@ void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
 void color_box(SDL_Surface *ecran,int size_window)
 {
 	RGB J = {255, 247, 0}; //Jaune
-	RGB R = {255, 0, 0 };  //Rougr
+	RGB R = {255, 0, 0 };  //Rouge
 	RGB G = {169, 143, 100}; //Gris
-	RGB V = {85, 107, 47}; //Vert
-	RGB B = {255,255,102}; //Bleu
+	RGB V = {0, 255, 0}; //Vert
+	RGB B = {0,0,255}; //Bleu
 	RGB M = {255, 153, 102}; //Magenta
 	RGB solveur = {66,66,66};
 	RGB menu = {100,100,100};
@@ -186,13 +330,12 @@ void color_box(SDL_Surface *ecran,int size_window)
 
 void display_SDL(SDL_Surface *ecran, matrix T, int size, int size_window, bool border_flag)
 {
-	RGB V = {153, 255, 0}; //vert
-	RGB R = {204, 0, 51};  //Rouge
-	RGB B = {0, 102, 255}; //blue
-	RGB G = {102, 204, 204}; //gris
-	RGB J = {255,255,102}; //jaune
-	RGB M = {153, 0, 255}; //magenta
-
+	RGB J = {255, 247, 0}; //Jaune
+	RGB R = {255, 0, 0 };  //Rouge
+	RGB G = {169, 143, 100}; //Gris
+	RGB V = {0, 255, 0}; //Vert
+	RGB B = {0,0,255}; //Bleu
+	RGB M = {255, 153, 102}; //Magenta
 	int i, j;
 	char couleur;
 

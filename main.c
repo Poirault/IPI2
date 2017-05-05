@@ -53,24 +53,22 @@ int main()
 
 	police1 = TTF_OpenFont("orkney.ttf", 20);
 	police2 = TTF_OpenFont("orkney.ttf", 50);
-	police3 = TTF_OpenFont("orkney.ttf", 70);
+	/*police3 = TTF_OpenFont("orkney.ttf", 70);/*
 
 //	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
 
 
 	do 
 		{
-			/*ecran = menu(police1, police2, police3, &size, &difficulte, &nbr_coups_max, &border_flag);*/
+			ecran = menu(police1, police2, &size, nbr_coups_max);
 
 			if (size != 0)
 				{
 					T = grille(size);
-					/*matrix grille_sol = copie(grille, size);*/
 					matrix grille_copie;
 
-					/*solution_rapide(grille_sol, size, &nbr_coups_max);*/	/*utile pour le niveau de difficulté*/
 					
-					nbr_coups_max += 5/difficulte; /*niveau de difficulté*/
+					nbr_coups_max=1.7*size;
 					do 
 						{
 							/*grille_copie = copie(M, size);*/
@@ -90,15 +88,13 @@ int main()
 							T = grille_copie;
 						} while (bouton == 2 && out != 1);
 
-					/*free_space(T, size);*/
-					/*free_space(grille_sol, size);*/
-					/*free_space(plateau_copie, size); FAIT PLANTER LE MENU*/
+				
 				}
 		} while (bouton == 1 && size != 0 && out != 1);
 
 	TTF_CloseFont(police1);
 	TTF_CloseFont(police2);
-	TTF_CloseFont(police3);
+	/*TTF_CloseFont(police3);*/
 	TTF_Quit();
 
 	SDL_Quit();
