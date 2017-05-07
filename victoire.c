@@ -34,10 +34,9 @@ int victoire(matrix M,int m, int tour, int nbCoup)
 			printf("Defeat !\n");
 			vict=2;
 		}
-	if(vict==0)//Victoire, arrêt du jeu
-		{
-			printf("Victory !\n");
-		}
+
+// vict == 0 => victoire
+
 	return(vict);
 }
 

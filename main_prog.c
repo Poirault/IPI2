@@ -37,17 +37,6 @@ int main()
 	scanf("%d", &m);
 
 	M=grille(m);
-	printf("BITE BITE");
-	
-	for (j = 0; j < m; ++j)
-	{
-		for (k = 0; k < m; ++k)
-		{
-			
-			affich_couleur(M,j,k); //affiche les couleurs avec 10 espaces entre les couleurs d'une même ligne
-		}
-	printf("\n");
-	
 
 	matrix P=NULL;
 	P=(char **)calloc(m, sizeof(char*));
@@ -56,8 +45,10 @@ int main()
 		P[j]=(char *)calloc(m, sizeof(char));
 	}
 
-	for(j=0; j<m; j++) {
-		for(k=0; k<m; k++) {
+	for(j=0; j<m; j++) 
+	{
+		for(k=0; k<m; k++) 
+		{
 			P[j][k] = M[j][k];
 		}
 	}
@@ -70,7 +61,7 @@ int main()
 
 
 
-	} printf("Number tour : %d/%d \n", tour, nbCoup);
+	printf("Number tour : %d/%d \n", tour, nbCoup);
 
 	while((f!=0) && (f!=2)) { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
 		g=1;
@@ -132,20 +123,25 @@ int main()
 		}
 		
 		f=victoire(M,m,tour,nbCoup);
+
+		if (f==0)
+		{
+			printf("Victory !");
+		}
+		else if (f==2)
+		{
+			printf("Defeat !");
+		}
 	}
 
 	for (j = 0; j < m; ++j) //Libération d'espace mémoire
-		{
+	{
 			
-			free(M[j]);
-			free(T[j]);
-			
-		
-		}
-		free(M);
-		free(T);
-		
-	
+		free(M[j]);
+		free(T[j]);	
+	}
+	free(M);
+	free(T);
 
 	return 0;
 

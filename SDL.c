@@ -71,9 +71,9 @@ void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window)
 
 SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, int nbr_coups_max)
 {
-	SDL_Surface *ecran, *nom_jeu, *taille_jeu, *niveau_jeu, *facile, *normal, *expert, *icone_plus, *icone_moins, *icone_jouer;
+	SDL_Surface *ecran, *nom_jeu, *taille_jeu, *icone_plus, *icone_moins, *icone_jouer;
 	SDL_Event event;
-	SDL_Rect position_nom_jeu, position_taille_jeu, position_niveau_jeu, position_facile, position_normal, position_expert;
+	SDL_Rect position_nom_jeu, position_taille_jeu;
 	SDL_Rect position_plus, position_moins, position_jouer;
 	SDL_Color couleur_texte_W = {255, 255, 255, 42}, couleur_texte_G = {51, 51, 51, 42};
 
@@ -86,15 +86,8 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 	position_nom_jeu.y = 5;
 	position_taille_jeu.x = 78;
 	position_taille_jeu.y = 100;
-	position_niveau_jeu.x = 125;
-	position_niveau_jeu.y = 195;
 
-	position_facile.x = 62;
-	position_facile.y = 274;
-	position_normal.x = 184;
-	position_normal.y = 274;
-	position_expert.x = 326;
-	position_expert.y = 274;
+
 	position_plus.x = 308;
 	position_plus.y = 88;
 	position_moins.x = 308;
@@ -406,26 +399,21 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int size_window, bool b
 int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *nbr_coup_texte, TTF_Font *police, int size_window, bool border_flag, int* bouton, int* out)
 {
 	int continuer = 1, nbr_coup = 0, exit = 0;
-	SDL_Surface *texte, *texte1,*texte2;
-	char solveur_info[30];
+	SDL_Surface *texte;
 	SDL_Event event;
 	SDL_Color texteNoir = {0, 0, 0, 42}, fondBlanc = {245, 240, 240, 42};
-	SDL_Rect position, position1;
+	SDL_Rect position;
 
 	position.x = 500*(3/2.0)+90;
 	position.y = 500/2.0+30;
-	position1.x = 80;
-	position1.y = 550;
+
 
 	color_box(ecran,size_window);
 	
-	int nbr_coups_min;
-	char* chemin;
 	bool flip = true;
 	while(victoire(T, size, nbr_coup, nbr_coups_max) != 0 && victoire(T, size, nbr_coup, nbr_coups_max) != 2 
 		&& continuer && exit == 0)
 	{
-		char ancienne_couleur = T[0][0];
 		SDL_WaitEvent(&event);
 		switch (event.type)
 		{

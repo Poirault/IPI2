@@ -18,7 +18,7 @@ en fonction de la taille du jeu de 1,7*tailleJeu
 */
 int nmbre_coup(int m)
 {
-	int nmbre_coup,partie_entiere;
+	int nmbre_coup, partie_entiere;
 	nmbre_coup= 1.7*m; //Pondération empirique
 	partie_entiere= floor(nmbre_coup)+1;
 	return partie_entiere;
