@@ -43,7 +43,4 @@ $(TARGET2): main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o sol
 clean: 
 	-rm *.o -f colorflood test console
 
-$(APPLI):	$(COBJ)
-	$(CC) -o $(APPLI) $(COBJ) $(LFLAGS)
-
 
