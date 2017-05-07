@@ -22,12 +22,12 @@ void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window)
 {
 	size_window=size_window-9;
 
-	RGB J = {255, 247, 0}; //Jaune
-	RGB R = {255, 0, 0 };  //Rouge
-	RGB G = {169, 143, 100}; //Gris
-	RGB V = {0, 255, 0}; //Vert
-	RGB B = {0,0,255}; //Bleu
-	RGB M = {255, 153, 102}; //Magenta
+	RGB J = {255, 255, 102}; //Jaune
+	RGB R = {255, 20, 20};  //Rouge
+	RGB G = {96, 96, 96}; //Gris
+	RGB V = {0, 102, 0}; //Vert
+	RGB B = {30,30,150}; //Bleu
+	RGB M = {102, 0, 51}; //Magenta
 
 	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 245, 240, 240));
 	int i, j;
@@ -83,41 +83,41 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 	int nbr_coup=0;
 	char compteur_txt[50];
 
-	position_c.x = 92;
-	position_c.y = 5;
-	position_o_1.x = 112;
-	position_o_1.y = 5;
-	position_l_1.x = 132;
-	position_l_1.y = 5;
-	position_o_2.x = 152;
-	position_o_2.y = 5;
-	position_r.x = 172;
-	position_r.y = 5;
-	position_f.x = 192;
-	position_f.y = 5;
-	position_l_2.x = 212;
-	position_l_2.y = 5;
-	position_o_3.x = 232;
-	position_o_3.y = 5;
-	position_o_4.x = 252;
-	position_o_4.y = 5;
-	position_d.x = 272;
-	position_d.y = 5;
-	position_taille_jeu.x = 78;
-	position_taille_jeu.y = 100;
+	position_c.x = 175;
+	position_c.y = 50;
+	position_o_1.x = 225;
+	position_o_1.y = 50;
+	position_l_1.x = 275;
+	position_l_1.y = 50;
+	position_o_2.x = 310;
+	position_o_2.y = 50;
+	position_r.x = 360;
+	position_r.y = 50;
+	position_f.x = 425;
+	position_f.y = 50;
+	position_l_2.x = 475;
+	position_l_2.y = 50;
+	position_o_3.x = 510;
+	position_o_3.y = 50;
+	position_o_4.x = 560;
+	position_o_4.y = 50;
+	position_d.x = 610;
+	position_d.y = 50;
+	position_taille_jeu.x = 380;
+	position_taille_jeu.y = 310;
 
 
-	position_plus.x = 308;
-	position_plus.y = 88;
-	position_moins.x = 308;
-	position_moins.y = 132;
-	position_jouer.x = 176;
-	position_jouer.y = 352;
+	position_plus.x = 500;
+	position_plus.y = 300;
+	position_moins.x = 300;
+	position_moins.y = 300;
+	position_jouer.x = 320;
+	position_jouer.y = 450;
 
 	int background_size = 10, i = 0;
 	matrix T = grille(background_size);
 
-	int size_window = 440;
+	int size_window = 800;
 	ecran = SDL_SetVideoMode(size_window, size_window, 32, SDL_HWSURFACE); /*fenêtre au début à cette taille par défaut*/
 	SDL_WM_SetCaption("Menu : Choisissez la taille du jeu", NULL);
 
@@ -173,15 +173,15 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 				{
 					int x = event.button.x;
 					int y = event.button.y;
-					if(x >= 308 && x < 352)
+					if(y >= 300 && y < 344)
 					{
-						if(y >= 88 && y < 132 && compteur < 24)
+						if(x >= 500 && x < 544 && compteur < 24)
 							compteur++;
-						else if(y >= 132 && y < 176 && compteur > 3)
+						else if(x >= 300 && x < 344 && compteur > 3)
 							compteur--;
 						flip = true;
 					}
-					else if(x >= 176 && x < 264 && y >= 352 && y < 440)
+					else if(x >= 320 && x < 520 && y >= 450 && y < 650)
 					{
 						*size = compteur;
 						continuer = 0;
@@ -273,7 +273,7 @@ SDL_Surface *initialize_screen(int size_window)
 {
 
 	SDL_Surface *ecran = NULL;
-	RGB init_screen = {255,255,255};	//blanc
+	RGB init_screen = {0,0,0};	/*Fond d'écran noir*/		
 
 	ecran = SDL_SetVideoMode(2*size_window, size_window+120, 8, SDL_HWSURFACE);
 	/* nom de la fenêtre */
@@ -302,19 +302,19 @@ void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
 {
 	SDL_Rect position1,position2,position3,position4;
 	SDL_Rect position_menu, position_rejouer;
-	SDL_Color texteNoir = {0, 0, 0, 42}, fondBlanc = {255, 255, 255, 42};	/* 4ème paramètre inutile */
+	SDL_Color fondNoir = {0, 0, 0, 42}, texteBlanc = {255, 255, 255, 42};	/* 4ème paramètre inutile */
 	SDL_Surface *texte1,*texte2,*texte3,*texte4;
 	SDL_Surface *menu, *rejouer;
 
-	texte1 = TTF_RenderUTF8_Shaded(police, "Color Box", texteNoir, fondBlanc);
-	texte2 = TTF_RenderUTF8_Shaded(police, "Afficher le solveur ", texteNoir, fondBlanc);
-	texte3 = TTF_RenderUTF8_Shaded(police, "Nombre de coups ", texteNoir, fondBlanc);
-	texte4 = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteNoir, fondBlanc);
-	menu = TTF_RenderUTF8_Shaded(police, "Menu", texteNoir, fondBlanc);
-	rejouer = TTF_RenderUTF8_Shaded(police, "Rejouer", texteNoir, fondBlanc);
+	texte1 = TTF_RenderUTF8_Shaded(police, "Couleur à choisir :", texteBlanc, fondNoir);
+	texte2 = TTF_RenderUTF8_Shaded(police, "Afficher le solveur ", texteBlanc, fondNoir);
+	texte3 = TTF_RenderUTF8_Shaded(police, "Nombre de coups ", texteBlanc, fondNoir);
+	texte4 = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
+	menu = TTF_RenderUTF8_Shaded(police, "Menu", texteBlanc, fondNoir);
+	rejouer = TTF_RenderUTF8_Shaded(police, "Rejouer", texteBlanc, fondNoir);
 
-	position1.x = 80;
-	position1.y = 520;
+	position1.x = 25;
+	position1.y = 570;
 	position2.x = 785;
 	position2.y = 455;
 	position3.x = 500*(3/2.0)+40;
@@ -344,21 +344,21 @@ void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
 
 void color_box(SDL_Surface *ecran,int size_window)
 {
-	RGB J = {255, 247, 0}; //Jaune
-	RGB R = {255, 0, 0 };  //Rouge
-	RGB G = {169, 143, 100}; //Gris
-	RGB V = {0, 255, 0}; //Vert
-	RGB B = {0,0,255}; //Bleu
-	RGB M = {255, 153, 102}; //Magenta
+	RGB J = {255, 255, 102}; //Jaune
+	RGB R = {255, 20, 20 };  //Rouge
+	RGB G = {96, 96, 96}; //Gris
+	RGB V = {0, 102, 0}; //Vert
+	RGB B = {30,30,150}; //Bleu
+	RGB M = {102, 0, 51}; //Magenta
 	RGB solveur = {66,66,66};
 	RGB menu = {100,100,100};
 	RGB rejouer = {150,150,150};
-	drawRectangle(ecran, size_window*(0.0/6)+20, size_window/4.0-40, (size_window-40)/6, G);
-	drawRectangle(ecran, size_window*(1.0/6)+20,size_window/4.0-40, (size_window-40)/6, R);
-	drawRectangle(ecran, size_window*(2.0/6)+20,size_window/4.0-40, (size_window-40)/6, J);
-	drawRectangle(ecran, size_window*(3.0/6)+20,size_window/4.0-40, (size_window-40)/6, V);
-	drawRectangle(ecran, size_window*(4.0/6)+20,size_window/4.0-40, (size_window-40)/6, B);
-	drawRectangle(ecran, size_window*(5.0/6)+20,size_window/4.0-40, (size_window-40)/6, M);	
+	drawRectangle(ecran, 550, 225, (size_window-40)/7, G);
+	drawRectangle(ecran, 550, 325, (size_window-40)/7, R);
+	drawRectangle(ecran, 550, 425, (size_window-40)/7, J);
+	drawRectangle(ecran, 550, 525, (size_window-40)/7, V);
+	drawRectangle(ecran, 550, 625, (size_window-40)/7, B);
+	drawRectangle(ecran, 550, 725, (size_window-40)/7, M);	
 	drawRectangle(ecran, size_window/2.0+100,size_window*(3/2.0)+80, (size_window-40)/6, solveur);	
 	drawRectangle(ecran, 25,size_window*(3/2.0)+40, (size_window-40)/6, menu);	
 	drawRectangle(ecran, 25,size_window*(3/2.0)+135, (size_window-40)/6, rejouer);	
@@ -367,12 +367,12 @@ void color_box(SDL_Surface *ecran,int size_window)
 
 void display_SDL(SDL_Surface *ecran, matrix T, int size, int size_window, bool border_flag)
 {
-	RGB J = {255, 247, 0}; //Jaune
-	RGB R = {255, 0, 0 };  //Rouge
-	RGB G = {169, 143, 100}; //Gris
-	RGB V = {0, 255, 0}; //Vert
-	RGB B = {0,0,255}; //Bleu
-	RGB M = {255, 153, 102}; //Magenta
+	RGB J = {255, 255, 102}; //Jaune
+	RGB R = {255, 20, 20};  //Rouge
+	RGB G = {96, 96, 96}; //Gris
+	RGB V = {0, 102, 0}; //Vert
+	RGB B = {30,30,150}; //Bleu
+	RGB M = {102, 0, 51}; //Magenta
 	int i, j;
 	char couleur;
 
@@ -445,7 +445,7 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 	int continuer = 1, nbr_coup = 0, exit = 0;
 	SDL_Surface *texte;
 	SDL_Event event;
-	SDL_Color texteNoir = {0, 0, 0, 42}, fondBlanc = {245, 240, 240, 42};
+	SDL_Color fondNoir = {0, 0, 0, 42}, texteBlanc = {255, 255, 255, 42};
 	SDL_Rect position;
 
 	position.x = 500*(3/2.0)+90;
@@ -472,43 +472,45 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 				int x = event.button.x;
 				int y = event.button.y;
 				int cons=(size_window-40)/6;
-				
-	
-				if(y >= (size_window*(0.0/6)+20) && y < (size_window*(0.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
+
+				if((y >= 550) && (y <= 616))
 				{
-					modif_color(T, 'G', nbr_coups_max);
-					nbr_coup++;
-					flip = true;
-				}
-				if(y >= (size_window*(1.0/6)+20) && y < (size_window*(1.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
-				{
-					modif_color(T, 'R', nbr_coups_max);
-					nbr_coup++;
-					flip = true;
-				}
-				if(y >= (size_window*(2.0/6)+20) && y < (size_window*(2.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
-				{
-					modif_color(T, 'J', nbr_coups_max);
-					nbr_coup++;
-					flip = true;
-				}
-				if(y >= (size_window*(3.0/6)+20) && y < (size_window*(3.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
-				{
-					modif_color(T, 'V', nbr_coups_max);
-					nbr_coup++;
-					flip = true;
-				}
-				if(y >= (size_window*(4.0/6)+20) && y < (size_window*(4.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
-				{
-					modif_color(T, 'B', nbr_coups_max);
-					nbr_coup++;
-					flip = true;
-				}
-				if(y >= (size_window*(5.0/6)+20) && y < (size_window*(5.0/6)+20+cons) && x >= (size_window/4.0-40) && x < (size_window/4.0-40+cons))
-				{
-					modif_color(T, 'M', nbr_coups_max);
-					nbr_coup++;
-					flip = true;
+					if((x>= 225) && (x<=291))
+					{
+						modif_color(T, 'G', size);
+						nbr_coup++;
+						flip = true;
+					}
+					if((x>= 325) && (x<=391))
+					{
+						modif_color(T, 'R', size);
+						nbr_coup++;
+						flip = true;
+					}
+					if((x>= 425) && (x<=491))
+					{
+						modif_color(T, 'J', size);
+						nbr_coup++;
+						flip = true;
+					}
+					if((x>= 525) && (x<=591))
+					{
+						modif_color(T, 'V', size);
+						nbr_coup++;
+						flip = true;
+					}
+					if((x>= 625) && (x<=691))
+					{
+						modif_color(T, 'B', size);
+						nbr_coup++;
+						flip = true;
+					}
+					if((x>= 725) && (x<=791))
+					{
+						modif_color(T, 'M', size);
+						nbr_coup++;
+						flip = true;
+					}
 				}
 				// solveur
 				/*
@@ -568,7 +570,7 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 		{
 			flip = false;
 			sprintf(nbr_coup_texte, "%d/%d", nbr_coup, nbr_coups_max);
-			texte = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteNoir, fondBlanc);
+			texte = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
 			SDL_BlitSurface(texte, NULL, ecran, &position);
 			display_SDL(ecran, T, size,size_window,border_flag);
 			SDL_Flip(ecran);
@@ -580,15 +582,15 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 
 void end_game(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nbr_coups_max, TTF_Font *police)
 {
-	SDL_Color texteNoir = {0, 0, 0, 42};
+	SDL_Color texteBlanc = {255, 255, 255, 42};
 
 	SDL_Surface *texte = NULL;
 	SDL_Rect position;
 
 	if (victoire(T, size, nbr_coup, nbr_coups_max) == 2)
 	{
-		texte = TTF_RenderUTF8_Blended(police, "GAME OVER", texteNoir);
-		position.x = 350;
+		texte = TTF_RenderUTF8_Blended(police, "GAME OVER", texteBlanc);
+		position.x = 200;
 		position.y = 230;
 		SDL_BlitSurface(texte, NULL, ecran, &position);
 		SDL_Flip(ecran);
@@ -596,7 +598,7 @@ void end_game(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nbr_coup
 	}
 	if (victoire(T, size, nbr_coup, nbr_coups_max) == 0)
 	{
-		texte = TTF_RenderUTF8_Blended(police, "WIN", texteNoir);
+		texte = TTF_RenderUTF8_Blended(police, "WIN", texteBlanc);
 		position.x = 450;
 		position.y = 230;
 		SDL_BlitSurface(texte, NULL, ecran, &position);
