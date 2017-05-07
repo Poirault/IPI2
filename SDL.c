@@ -212,7 +212,13 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 		if(flip)
 		{
 			flip = false;
+<<<<<<< Updated upstream
 //			display_menu(ecran, T, background_size, size_window);
+=======
+			/*display_menu(ecran, T, background_size, size_window);*/
+			SDL_Flip(ecran);
+			SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+>>>>>>> Stashed changes
 			sprintf(compteur_txt, "Taille : %2d", compteur);
 			taille_jeu = TTF_RenderUTF8_Blended(police_moyenne, compteur_txt, couleur_texte_W);
 			SDL_BlitSurface(c, NULL, ecran, &position_c);
