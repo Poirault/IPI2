@@ -100,7 +100,7 @@ int solveur(matrix M, int m, int nbCoup)
 			M = T;
 		}
 
-		test=rand_a_b(1,6);
+		test=rand_a_b(1,7);
             
 		if(test==1) {
       		c='B'; //Bleu

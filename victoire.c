@@ -31,7 +31,6 @@ int victoire(matrix M,int m, int tour, int nbCoup)
 		}
 	if (tour>nbCoup) //Défaite, arrêt du jeu
 		{
-			printf("Defeat !\n");
 			vict=2;
 		}
 
@@ -39,5 +38,3 @@ int victoire(matrix M,int m, int tour, int nbCoup)
 
 	return(vict);
 }
-
- //$(CC) testSDL.o $(LDFLAGS) -o testSDL 

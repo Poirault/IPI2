@@ -13,7 +13,15 @@ main_prog.o: coul-fct1_2.h victoire.h grille.h fonctions_utiles.h solveur.h coul
 
 main.o: coul-fct1_2.h victoire.h grille.h fonctions_utiles.h solveur.h SDL.h main.c 
 	$(CC) -c $(CFLAGS) main.c
-
+		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
+		{
+			for (k = 0; k < m; ++k)
+			{
+				
+				affich_couleur(M,j,k);
+			}
+		printf("\n");
+		}
 coul-fct1_2.o: coul-fct1_2.h grille.h coul-fct1_2.c
 	$(CC) -c $(CFLAGS) coul-fct1_2.c
 
@@ -37,7 +45,7 @@ $(TARGET1): main.o coul-fct1_2.o victoire.o grille.o solveur.o fonctions_utiles.
 		$(CC) -o $(TARGET1) main.o coul-fct1_2.o victoire.o grille.o solveur.o fonctions_utiles.o SDL.o $(LDFLAGS) $(CFLAGS)
 
 $(TARGET2): main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o
-		@echo "Building $(TARGE2)"
+		@echo "Building $(TARGET2)"
 		$(CC) -o $(TARGET2) main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o $(CFLAGS) -lm
 
 clean: 

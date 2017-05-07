@@ -38,6 +38,16 @@ int main()
 
 	M=grille(m);
 
+	for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
+	{
+		for (k = 0; k < m; ++k)
+		{
+			
+			affich_couleur(M,j,k);
+		}
+	printf("\n");
+	}
+
 	matrix P=NULL;
 	P=(char **)calloc(m, sizeof(char*));
 	for (j = 0; j < m; ++j)
