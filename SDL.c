@@ -71,19 +71,38 @@ void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window)
 
 SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, int nbr_coups_max)
 {
-	SDL_Surface *ecran, *nom_jeu, *taille_jeu, *icone_plus, *icone_moins, *icone_jouer;
+	SDL_Surface *ecran, *c, *o_1, *o_2, *o_3, *o_4, *l_1, *l_2, *r, *f, *d, *taille_jeu, *icone_plus, *icone_moins, *icone_jouer;
 	SDL_Event event;
-	SDL_Rect position_nom_jeu, position_taille_jeu;
+	SDL_Rect position_c, position_o_1, position_l_1, position_o_2, position_r, position_f, position_l_2, position_o_3, position_o_4, position_d, position_taille_jeu;
 	SDL_Rect position_plus, position_moins, position_jouer;
-	SDL_Color couleur_texte_W = {255, 255, 255, 42}, couleur_texte_G = {51, 51, 51, 42};
+	SDL_Color couleur_texte_W = {255, 255, 255, 42}, couleur_texte_1 = {220, 0, 220, 50}, couleur_texte_2 = {200, 200, 10, 80},
+	couleur_texte_3 = {20, 180, 180, 120}, couleur_texte_4 = {160, 50, 160, 150}, couleur_texte_5 = {0, 140, 140, 180};
 
 	bool flip = true;
 	int continuer = 1, compteur = 3;
 	int nbr_coup=0;
 	char compteur_txt[50];
 
-	position_nom_jeu.x = 41;
-	position_nom_jeu.y = 5;
+	position_c.x = 92;
+	position_c.y = 5;
+	position_o_1.x = 112;
+	position_o_1.y = 5;
+	position_l_1.x = 132;
+	position_l_1.y = 5;
+	position_o_2.x = 152;
+	position_o_2.y = 5;
+	position_r.x = 172;
+	position_r.y = 5;
+	position_f.x = 192;
+	position_f.y = 5;
+	position_l_2.x = 212;
+	position_l_2.y = 5;
+	position_o_3.x = 232;
+	position_o_3.y = 5;
+	position_o_4.x = 252;
+	position_o_4.y = 5;
+	position_d.x = 272;
+	position_d.y = 5;
 	position_taille_jeu.x = 78;
 	position_taille_jeu.y = 100;
 
@@ -100,25 +119,29 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 
 	int size_window = 440;
 	ecran = SDL_SetVideoMode(size_window, size_window, 32, SDL_HWSURFACE); /*fenêtre au début à cette taille par défaut*/
-	SDL_WM_SetCaption("Menu ColorFlood", NULL);
+	SDL_WM_SetCaption("Menu : Choisissez la taille du jeu", NULL);
 
-	nom_jeu = TTF_RenderUTF8_Blended(police_grande, "ColorFlood", couleur_texte_G);
+	c = TTF_RenderUTF8_Blended(police_grande, "C", couleur_texte_1);
+	o_1 = TTF_RenderUTF8_Blended(police_grande, "o", couleur_texte_2);
+	l_1 = TTF_RenderUTF8_Blended(police_grande, "l", couleur_texte_3);
+	o_2 = TTF_RenderUTF8_Blended(police_grande, "o", couleur_texte_4);
+	r = TTF_RenderUTF8_Blended(police_grande, "r", couleur_texte_5);
+	f = TTF_RenderUTF8_Blended(police_grande, "F", couleur_texte_1);
+	l_2 = TTF_RenderUTF8_Blended(police_grande, "l", couleur_texte_2);
+	o_3 = TTF_RenderUTF8_Blended(police_grande, "o", couleur_texte_3);
+	o_4 = TTF_RenderUTF8_Blended(police_grande, "o", couleur_texte_4);
+	d = TTF_RenderUTF8_Blended(police_grande, "d", couleur_texte_5);
 
 	icone_plus = SDL_LoadBMP("img/plus.bmp");
 	icone_moins = SDL_LoadBMP("img/moins.bmp");
-	icone_jouer = SDL_LoadBMP("img/jouer.bmp");
+	icone_jouer = SDL_LoadBMP("img/play.bmp");
 
 	int time_between_moves = 875;
 	/*grille plateau_sol = copie(plateau,background_size);*/
 	char* chemin = malloc(100*sizeof(char));
 	/*chemin = solution_rapide(plateau_sol, background_size, nbr_coups_max);*/
 	//free_space(plateau_sol, background_size);
-	
 
-	/*Mix_Music *musique; //Création du pointeur de type Mix_Music
-	musique = Mix_LoadMUS("son/musique_menu.mp3"); //Chargement de la musique
-	Mix_VolumeMusic(30);
-	Mix_PlayMusic(musique, -1);*/
 
 
 	unsigned long time = SDL_GetTicks();
@@ -166,6 +189,7 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 				}
 			}
 		}
+
 		if(time > time_next_move)
 		{
 			if(victoire(T, background_size,nbr_coup, nbr_coups_max ) != 0)
@@ -184,13 +208,23 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 			}
 		}
 
+
 		if(flip)
 		{
 			flip = false;
-			display_menu(ecran, T, background_size, size_window);
+//			display_menu(ecran, T, background_size, size_window);
 			sprintf(compteur_txt, "Taille : %2d", compteur);
-			taille_jeu = TTF_RenderUTF8_Blended(police_moyenne, compteur_txt, couleur_texte_G);
-			SDL_BlitSurface(nom_jeu, NULL, ecran, &position_nom_jeu);
+			taille_jeu = TTF_RenderUTF8_Blended(police_moyenne, compteur_txt, couleur_texte_W);
+			SDL_BlitSurface(c, NULL, ecran, &position_c);
+			SDL_BlitSurface(o_1, NULL, ecran, &position_o_1);
+			SDL_BlitSurface(l_1, NULL, ecran, &position_l_1);
+			SDL_BlitSurface(o_2, NULL, ecran, &position_o_2);
+			SDL_BlitSurface(r, NULL, ecran, &position_r);
+			SDL_BlitSurface(f, NULL, ecran, &position_f);
+			SDL_BlitSurface(l_2, NULL, ecran, &position_l_2);
+			SDL_BlitSurface(o_3, NULL, ecran, &position_o_3);
+			SDL_BlitSurface(o_4, NULL, ecran, &position_o_4);
+			SDL_BlitSurface(d, NULL, ecran, &position_d);
 			SDL_BlitSurface(taille_jeu, NULL, ecran, &position_taille_jeu);
 			SDL_BlitSurface(icone_plus, NULL, ecran, &position_plus);
 			SDL_BlitSurface(icone_moins, NULL, ecran, &position_moins);
@@ -207,12 +241,20 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 		time = new_time;
 	}
 	/*free_space(plateau, background_size);*/
-	SDL_FreeSurface(nom_jeu);
+	SDL_FreeSurface(c);
+	SDL_FreeSurface(o_1);
+	SDL_FreeSurface(o_2);
+	SDL_FreeSurface(o_3);
+	SDL_FreeSurface(o_4);
+	SDL_FreeSurface(l_1);
+	SDL_FreeSurface(l_2);
+	SDL_FreeSurface(r);
+	SDL_FreeSurface(f);
+	SDL_FreeSurface(d);
 	SDL_FreeSurface(taille_jeu);
 	SDL_FreeSurface(icone_plus);
 	SDL_FreeSurface(icone_moins);
 	SDL_FreeSurface(icone_jouer);
-	/*Mix_FreeMusic(musique);*/
 	return ecran;
 }
 
@@ -233,7 +275,7 @@ SDL_Surface *initialize_screen(int size_window)
 
 	ecran = SDL_SetVideoMode(2*size_window, size_window+120, 8, SDL_HWSURFACE);
 	/* nom de la fenêtre */
-	SDL_WM_SetCaption("ColorFlood (Les âmes perdues)", NULL);
+	SDL_WM_SetCaption("ColorFlood", NULL);
 
 	/*
 	SDL_Rect positionFond;
