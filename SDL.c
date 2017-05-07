@@ -134,7 +134,7 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 
 	icone_plus = SDL_LoadBMP("img/plus.bmp");
 	icone_moins = SDL_LoadBMP("img/moins.bmp");
-	icone_jouer = SDL_LoadBMP("img/play.bmp");
+	icone_jouer = SDL_LoadBMP("img/finalplay.bmp");
 
 	int time_between_moves = 875;
 	/*grille plateau_sol = copie(plateau,background_size);*/
