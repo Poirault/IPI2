@@ -37,9 +37,8 @@ $(TARGET1): main.o coul-fct1_2.o victoire.o grille.o solveur.o fonctions_utiles.
 		$(CC) -o $(TARGET1) main.o coul-fct1_2.o victoire.o grille.o solveur.o fonctions_utiles.o SDL.o $(LDFLAGS) $(CFLAGS)
 
 $(TARGET2): main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o
-		@echo "Building $(TARGET1)"
-		$(CC) -o $(TARGET1) main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o $(CFLAGS)
-
+		@echo "Building $(TARGE2)"
+		$(CC) -o $(TARGET2) main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o $(CFLAGS) -lm
 
 clean: 
 	-rm *.o -f colorflood test console
