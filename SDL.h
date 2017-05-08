@@ -28,8 +28,6 @@ void drawRectangle(SDL_Surface *ecran, int px, int py, int size, RGB couleur);
 
 void fillScreen(SDL_Surface *ecran, RGB couleur);
 
-void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window);
-
 SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, int nbr_coups_max);
 
 void drawTexture(SDL_Surface *ecran, int px, int py, SDL_Surface *ima);
