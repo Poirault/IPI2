@@ -6,6 +6,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 LDFLAGS = -lm -lSDL -lSDL_ttf
 
+#----------------------------------------------------------------------------------------------------------------------------
+
 all: $(TARGETS)
 
 main_prog.o: fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h couleur.h main_prog.c 
@@ -39,6 +41,14 @@ $(TARGET1): main.o fct_couleur.o victoire.o grille.o solveur.o fonctions_utiles.
 $(TARGET2): main_prog.o fct_couleur.o victoire.o grille.o fonctions_utiles.o solveur.o
 		@echo "Building $(TARGET2)"
 		$(CC) -o $(TARGET2) main_prog.o fct_couleur.o victoire.o grille.o fonctions_utiles.o solveur.o $(CFLAGS) -lm
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+doxygen: 
+	doxygen Doxyfile
+
+valgrind:
+	valgrind ./colorflood
 
 clean: 
 	-rm *.o -f colorflood test console
