@@ -1,45 +1,62 @@
-//IPI2 - Les Âmes Perdues : ColorFlood
+#IPI2 - Les Âmes Perdues : ColorFlood
 
 
-* Installation :
+## Installation :
 
 Bibliothèque SDL :
-	sudo apt install lbsdl1.2-dev
+```sh
+$ sudo apt install lbsdl1.2-dev
+```
 
 Bibliothèque SDL_ttf :
-	sudo apt install libsdl-ttf2.0-dev
+```sh
+$ sudo apt install libsdl-ttf2.0-dev
+```
 
 Doxygen :
-	sudo apt install doxygen
+```sh
+$ sudo apt install doxygen
+```
 
 Valgrind :
-	sudo apt install valgrind
+```
+$ sudo apt install valgrind
+```
 
 
-* Utilisation :
+## Utilisation :
 
 Tout compiler :
-	$ make all
+```sh
+$ make all
+```
 
 Compiler et exécuter pour jouer sur le terminal :
-	$ make prog
-	$ ./prog
+```sh
+$ make prog
+$ ./prog
+```
 
 Compiler et exécuter pour jouer via la SDL :
-	$ make colorflood
-	$ ./colorflood
+```sh
+$ make colorflood
+$ ./colorflood
+```
 
 Doxygen :
-	$ make doxygen
-	ouvrir html/index.html
+```sh
+$ make doxygen
+ouvrir html/index.html
+```
 
 Nettoyer :
-	$ make clean
+```sh
+$ make clean
+```
 
-
-* Les Âmes Perdues :
-	ATAMIAN Vartan
-	BIZIEN Kevin
-	GRILL Léo
-	MALOUMIAN Romuald
+## Les Âmes Perdues :
+* ATAMIAN Vartan
+* BIZIEN Kevin
+* GRILL Léo
+* MALOUMIAN Romuald
 
