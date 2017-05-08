@@ -50,8 +50,8 @@ int main()
 
 	TTF_Init();
 
-	police1 = TTF_OpenFont("orkney.ttf", 20);
-	police2 = TTF_OpenFont("orkney.ttf", 70);
+	police1 = TTF_OpenFont("texte.ttf", 20);
+	police2 = TTF_OpenFont("texte.ttf", 70);
 
 	//SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL); icône de la fenêtre 
 
