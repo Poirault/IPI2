@@ -1,4 +1,4 @@
-#include "coul-fct1_2.h"
+#include "fct_couleur.h"
 #include "grille.h"
 #include "fonctions_utiles.h"
 #include "victoire.h"

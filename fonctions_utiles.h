@@ -3,6 +3,7 @@
 
 #include "grille.h"
 #include "couleur.h"
+#include "fct_couleur.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -22,7 +23,7 @@
 
 
 
-int nmbre_coup(int m); 
+int nmbre_coup(int size); 
 
 
 
@@ -34,6 +35,16 @@ int nmbre_coup(int m);
 en fonction de la taille du jeu de 1,7*tailleJeu
 */
 void affich_couleur(matrix M,int j,int k);
+
+void affiche_grille(matrix M, int size);
+
+matrix copie(matrix M, int size);
+
+char commande_clavier();
+
+void free_grille(matrix M, int size);
+
+void texte_victoire(int vict);
 
 
 #endif

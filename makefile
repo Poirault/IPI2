@@ -8,22 +8,14 @@ LDFLAGS = -lm -lSDL -lSDL_ttf
 
 all: $(TARGETS)
 
-main_prog.o: coul-fct1_2.h victoire.h grille.h fonctions_utiles.h solveur.h couleur.h main_prog.c 
+main_prog.o: fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h couleur.h main_prog.c 
 	$(CC) -c $(CFLAGS) main_prog.c
 
-main.o: coul-fct1_2.h victoire.h grille.h fonctions_utiles.h solveur.h SDL.h main.c 
+main.o: fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h SDL.h main.c 
 	$(CC) -c $(CFLAGS) main.c
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				
-				affich_couleur(M,j,k);
-			}
-		printf("\n");
-		}
-coul-fct1_2.o: coul-fct1_2.h grille.h coul-fct1_2.c
-	$(CC) -c $(CFLAGS) coul-fct1_2.c
+
+fct_couleur.o: fct_couleur.h grille.h fct_couleur.c
+	$(CC) -c $(CFLAGS) fct_couleur.c
 
 victoire.o: victoire.h grille.h victoire.c
 	$(CC) -c $(CFLAGS) victoire.c
@@ -31,22 +23,22 @@ victoire.o: victoire.h grille.h victoire.c
 grille.o: grille.h  grille.c
 	$(CC) -c $(CFLAGS) grille.c 
 
-fonctions_utiles.o: fonctions_utiles.h grille.h fonctions_utiles.c
+fonctions_utiles.o: fonctions_utiles.h grille.h couleur.h fct_couleur.h fonctions_utiles.c
 	$(CC) -c $(CFLAGS) fonctions_utiles.c 
 
-solveur.o: coul-fct1_2.h victoire.h grille.h fonctions_utiles.h solveur.h solveur.c 
+solveur.o: fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h solveur.c 
 	$(CC) -c $(CFLAGS) solveur.c 
 
-SDL.o: SDL.h coul-fct1_2.h victoire.h grille.h fonctions_utiles.h solveur.h SDL.c
+SDL.o: SDL.h fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h SDL.c
 	$(CC) -c $(CFLAGS) SDL.c
 
-$(TARGET1): main.o coul-fct1_2.o victoire.o grille.o solveur.o fonctions_utiles.o SDL.o
+$(TARGET1): main.o fct_couleur.o victoire.o grille.o solveur.o fonctions_utiles.o SDL.o
 		@echo "Building $(TARGET1)"
-		$(CC) -o $(TARGET1) main.o coul-fct1_2.o victoire.o grille.o solveur.o fonctions_utiles.o SDL.o $(LDFLAGS) $(CFLAGS)
+		$(CC) -o $(TARGET1) main.o fct_couleur.o victoire.o grille.o solveur.o fonctions_utiles.o SDL.o $(LDFLAGS) $(CFLAGS)
 
-$(TARGET2): main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o
+$(TARGET2): main_prog.o fct_couleur.o victoire.o grille.o fonctions_utiles.o solveur.o
 		@echo "Building $(TARGET2)"
-		$(CC) -o $(TARGET2) main_prog.o coul-fct1_2.o victoire.o grille.o fonctions_utiles.o solveur.o $(CFLAGS) -lm
+		$(CC) -o $(TARGET2) main_prog.o fct_couleur.o victoire.o grille.o fonctions_utiles.o solveur.o $(CFLAGS) -lm
 
 clean: 
 	-rm *.o -f colorflood test console

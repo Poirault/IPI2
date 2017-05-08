@@ -9,7 +9,7 @@
 #include <ncurses.h>
 #include <string.h>
 
-#include "coul-fct_2.h"
+#include "fct_couleur.h"
 #include "grille.h"
 
 int main {

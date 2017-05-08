@@ -13,36 +13,36 @@
 #include "grille.h"
 #include "solveur.h"
 #include "victoire.h"
-#include "coul-fct1_2.h"
+#include "fct_couleur.h"
 #include "fonctions_utiles.h"
 
-void voisin_random(matrix M, int m, char c) {
+void voisin_random(matrix M, int size, char couleur) {
 	int i, j;
 
 	matrice T;
 
 	matrix P=NULL;
-	P=(char **)calloc(m, sizeof(char*));
-	for (i = 0; i < m; ++i)
+	P=(char **)calloc(size, sizeof(char*));
+	for (i = 0; i < size; ++i)
 	{
-		P[i]=(char *)calloc(m, sizeof(char));
+		P[i]=(char *)calloc(size, sizeof(char));
 	}
 
-	for(i=0; i<m; i++) {
-		for(j=0; j<m; j++) {
+	for(i=0; i<size; i++) {
+		for(j=0; j<size; j++) {
 			P[i][j] = M[i][j];
 		}
 	}
 
-	T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
+	T=composante_conn(M,couleur,size); //Matrice d'entier pour savoir quoi "colorier"
 
-	for (i = 0; i < m; ++i)
+	for (i = 0; i < size; ++i)
 	{
-		for (j = 0; j < m; ++j)
+		for (j = 0; j < size; ++j)
 		{
 			if((T[i][j]==1) || (T[i][j]==2))
 			{
-				M[i][j]=c; 
+				M[i][j]=couleur; 
 			}
 		}
 	}
@@ -50,25 +50,25 @@ void voisin_random(matrix M, int m, char c) {
 }
 
 
-int solveur(matrix M, int m, int nbCoup)
+int solveur(matrix M, int size, int nb_coup_max)
 {
 	int i,j,/*k,*/ test, s;
 
-	char c;
+	char couleur;
 	
-	char solution[nbCoup];
+	char solution[nb_coup_max];
 
 	matrice T;
 
 	matrix P=NULL;
-	P=(char **)calloc(m, sizeof(char*));
-	for (i = 0; i < m; ++i)
+	P=(char **)calloc(size, sizeof(char*));
+	for (i = 0; i < size; ++i)
 	{
-		P[i]=(char *)calloc(m, sizeof(char));
+		P[i]=(char *)calloc(size, sizeof(char));
 	}
 
-	for(i=0; i<m; i++) {
-		for(j=0; j<m; j++) {
+	for(i=0; i<size; i++) {
+		for(j=0; j<size; j++) {
 			P[i][j] = M[i][j];
 		}
 	}
@@ -78,22 +78,22 @@ int solveur(matrix M, int m, int nbCoup)
  
 	int tour=0;	
 
-	while (victoire(M, m, tour, nbCoup)!=0){ //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
+	while (victoire(M, size, tour, nb_coup_max)!=0){ //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
 		
 		s = 0;
 
-		if (tour == nbCoup) { // Si la solution n'a pas fonctionné 
+		if (tour == nb_coup_max) { // Si la solution n'a pas fonctionné 
 			tour = 0;
 			//printf("On recommence\n");
 			matrix T=NULL;
-			T=(char **)calloc(m, sizeof(char*));
-			for (i = 0; i < m; ++i)
+			T=(char **)calloc(size, sizeof(char*));
+			for (i = 0; i < size; ++i)
 			{
-				T[i]=(char *)calloc(m, sizeof(char));
+				T[i]=(char *)calloc(size, sizeof(char));
 			}
 
-			for(i=0; i<m; i++) {
-				for(j=0; j<m; j++) {
+			for(i=0; i<size; i++) {
+				for(j=0; j<size; j++) {
 					T[i][j] = P[i][j];
 				}
 			}
@@ -103,33 +103,33 @@ int solveur(matrix M, int m, int nbCoup)
 		test=rand_a_b(1,7);
             
 		if(test==1) {
-      		c='B'; //Bleu
+      		couleur='B'; //Bleu
    		}
 
     	if(test==2) {
-      		c='G'; //Gris
+      		couleur='G'; //Gris
     	}
 
    		if(test==3) {
-       		c='J'; //Jaune
+       		couleur='J'; //Jaune
     	}
 
    		if(test==4) {
-       		c='M'; //Marron
+       		couleur='M'; //Marron
     	}
 
   		if(test==5) {
-       		c='R'; //Rouge
+       		couleur='R'; //Rouge
     	}
 
     	if(test==6) {
-      		c='V'; //Vert
+      		couleur='V'; //Vert
    		}
 
-   		T=composante_conn(M,c,m);
+   		T=composante_conn(M,couleur,size);
 
-   		for (i=0; i<m; i++) {
-   			for (j=0; j<m; j++) {
+   		for (i=0; i<size; i++) {
+   			for (j=0; j<size; j++) {
    				if (T[i][j]==2) {
    					s++;
    				}
@@ -138,15 +138,15 @@ int solveur(matrix M, int m, int nbCoup)
 
    		if (s!=0) {
 
-	   			voisin_random(M, m, c);
+	   			voisin_random(M, size, couleur);
 
-				solution[tour]=c;
+				solution[tour]=couleur;
 				/*
 				printf("voici M :\n");
 
-				for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
+				for (j = 0; j < size; ++j) //affiche le jeu avec les nouvelles couleurs
 				{
-					for (k = 0; k < m; ++k)
+					for (k = 0; k < size; ++k)
 					{
 						affich_couleur(M,j,k);
 					}
@@ -171,17 +171,17 @@ int solveur(matrix M, int m, int nbCoup)
 	for (i=0; i<tour; i++) {
 		printf("%c, ", solution[i]);
 	}
-	printf("\n      Maintenant à vous de jouer ! \n");
+	printf("\nMaintenant à vous de jouer ! \n");
 
 	return tour;
 }
 
 
-int majoration(matrix M, int m, int nbCoup) {
-	int min = nbCoup, i, test;
+int majoration(matrix M, int size, int nb_coup_max) {
+	int min = nb_coup_max, i, test;
 
 	for (i=0; i<1000; i++) {
-		test = solveur (M, m, nbCoup);
+		test = solveur (M, size, nb_coup_max);
 		if (test < min) {
 			min = test;
 		}

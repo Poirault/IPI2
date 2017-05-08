@@ -9,7 +9,7 @@
 #include <time.h>
 #include <string.h>
 
-#include "coul-fct1_2.h"
+#include "fct_couleur.h"
 #include "grille.h"
 #include "fonctions_utiles.h"
 #include "victoire.h"
@@ -20,138 +20,49 @@
 
 int main()
 {
-	int j,k,m,f,g, nbCoup, tour = 0;
-	f=1;
+	int size, nb_coup_max;
+	int vict=1, tour=0;
 
-	char o,c;
+	char couleur;
 
-	matrix M;
-
-
-	matrice T;
-
-
+	matrix M, P;
 
 
 	printf("Donnez la taille du jeu\n");
-	scanf("%d", &m);
+	scanf("%d", &size);
 
-	M=grille(m);
+	M=grille(size); //grille aléatoire du jeu
+	affiche_grille(M, size);
+	P = copie(M, size);
 
-	for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-	{
-		for (k = 0; k < m; ++k)
-		{
-			
-			affich_couleur(M,j,k);
-		}
-	printf("\n");
-	}
+	nb_coup_max = nmbre_coup(size); //formule empirique du jeu
 
-	matrix P=NULL;
-	P=(char **)calloc(m, sizeof(char*));
-	for (j = 0; j < m; ++j)
-	{
-		P[j]=(char *)calloc(m, sizeof(char));
-	}
-
-	for(j=0; j<m; j++) 
-	{
-		for(k=0; k<m; k++) 
-		{
-			P[j][k] = M[j][k];
-		}
-	}
-
-	nbCoup = nmbre_coup(m);
+	solveur(P, size, nb_coup_max);
 
 
-	solveur(P, m, nbCoup);
+	printf("Number tour : %d/%d \n", tour, nb_coup_max);
 
-
-
-
-	printf("Number tour : %d/%d \n", tour, nbCoup);
-
-	while((f!=0) && (f!=2)) { //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
-		g=1;
-		printf("Choisissez une couleur\n");
-		while(g!=0){
-			o=getche();
-			if(o=='b'){
-				c='B';
-				g=0;
-			}
-			if(o=='g'){
-				c='G';
-				g=0;
-			}
-			if(o=='j'){
-				c='J';
-				g=0;
-			}
-			if(o=='m'){
-				c='M';
-				g=0;
-			}
-			if(o=='r'){
-				c='R';
-				g=0;
-			}
-			if(o=='v'){
-				c='V';
-				g=0;
-			}
-		}
+	while((vict!=0) && (vict!=2)) //Tant qu'il n'y a pas de victoire ou que le nombre de tour est inférieure ou égale aux nombres de coups
+	{ 
+		couleur = commande_clavier();
 		
-		T=composante_conn(M,c,m); //Matrice d'entier pour savoir quoi "colorier"
+		modif_color(M, couleur, size);
 
-		for (j = 0; j < m; ++j)
-		{
-			for (k = 0; k < m; ++k)
-			{
-				if(T[j][k]==1 || T[j][k]==2)
-				{
-					M[j][k]=c; //on a pas besoin de la fct coloreplace
-				}
-			}
-		}
-
-		for (j = 0; j < m; ++j) //affiche le jeu avec les nouvelles couleurs
-		{
-			for (k = 0; k < m; ++k)
-			{
-				
-				affich_couleur(M,j,k);
-			}
-		printf("\n");
-		}
+		affiche_grille(M, size);
 
 		tour++;
-		if (tour<=nbCoup) {
-			printf("Number tour : %d/%d \n", tour, nbCoup);
+		if (tour<=nb_coup_max) 
+		{
+			printf("Number tour : %d/%d \n", tour, nb_coup_max);
 		}
 		
-		f=victoire(M,m,tour,nbCoup);
+		vict=victoire(M,size,tour,nb_coup_max);
 
-		if (f==0)
-		{
-			printf("Victory !");
-		}
-		else if (f==2)
-		{
-			printf("Defeat !");
-		}
+		texte_victoire(vict);
 	}
 
-	for (j = 0; j < m; ++j) //Libération d'espace mémoire
-	{
-			
-		free(M[j]);
-		free(T[j]);	
-	}
-	free(M);
-	free(T);
+	free_grille(M, size);
+	free_grille(P, size);
 
 	return 0;
 

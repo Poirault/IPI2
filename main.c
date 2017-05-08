@@ -1,5 +1,5 @@
 #include "SDL.h"
-#include "coul-fct1_2.h"
+#include "fct_couleur.h"
 #include "grille.h"
 #include "fonctions_utiles.h"
 #include "victoire.h"
@@ -24,16 +24,16 @@
 
 int main()
 {
-	int size = 0, difficulte = 0, nbr_coup = 0, nbr_coups_max = 0, bouton, out;
-	int size_window = 0;	/*taille de la fenetre dépendra de size*/
+	int size = 0, nbr_coup = 0, nbr_coups_max = 0, bouton, out;
+	int size_window = 0;	/*size_window dépend de size*/
 	matrix T;
-	bool border_flag;
+	bool border_flag = false;
 	char nbr_coup_texte[50];
 
 	SDL_Surface *ecran = NULL;
-	TTF_Font *police1 = NULL, *police2 = NULL, *police3 = NULL;
+	TTF_Font *police1 = NULL, *police2 = NULL;
 
-	/*initialisation da la SDL*/
+	/*On initialise la SDL*/
 	const SDL_VideoInfo *info = NULL;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -46,15 +46,14 @@ int main()
 		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
 		SDL_Quit();
 	}
-	/*fin d'initialisation de la SDL*/ 
+	/*fin d'initialisation*/ 
 
 	TTF_Init();
 
 	police1 = TTF_OpenFont("orkney.ttf", 20);
 	police2 = TTF_OpenFont("orkney.ttf", 50);
-	/*police3 = TTF_OpenFont("orkney.ttf", 70);/*
 
-//	SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL);	/*icône de la fenêtre*/
+	//SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL); icône de la fenêtre 
 
 
 	do 
@@ -70,7 +69,7 @@ int main()
 					nbr_coups_max=1.7*size;
 					do 
 						{
-							/*grille_copie = copie(M, size);*/
+							grille_copie = copie(T, size);
 							size_window = 500;
 							ecran = initialize_screen(size_window);
 
@@ -87,13 +86,13 @@ int main()
 							T = grille_copie;
 						} while (bouton == 2 && out != 1);
 
-				
+						free_grille(T, size);
+						//free_grille(grille_copie, size); ?
 				}
 		} while (bouton == 1 && size != 0 && out != 1);
 
 	TTF_CloseFont(police1);
 	TTF_CloseFont(police2);
-	/*TTF_CloseFont(police3);*/
 	TTF_Quit();
 
 	SDL_Quit();

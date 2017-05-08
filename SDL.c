@@ -18,56 +18,6 @@ void fillScreen(SDL_Surface *ecran, RGB couleur)
 	SDL_Flip(ecran);	/*MàJ de l'écran*/
 }
 
-void display_menu(SDL_Surface *ecran, matrix T, int size, int size_window)
-{
-	size_window=size_window-9;
-
-	RGB J = {255, 255, 102}; //Jaune
-	RGB R = {255, 20, 20};  //Rouge
-	RGB G = {96, 96, 96}; //Gris
-	RGB V = {0, 102, 0}; //Vert
-	RGB B = {30,30,150}; //Bleu
-	RGB M = {102, 0, 51}; //Magenta
-
-	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 245, 240, 240));
-	int i, j;
-	char couleur;
-
-	for (i=0 ; i<size ; i++)
-	{
-		for (j=0 ; j<size ; j++)
-		{
-			couleur = T[i][j];
-			switch (couleur)
-			{
-				case 'B':
-				drawRectangle(ecran, i*size_window/size+i*1, j*size_window/size+j*1, size_window/size, B);
-				break;
-
-				case 'V':
-				drawRectangle(ecran, i*size_window/size+i*1, j*size_window/size+j*1, size_window/size, V);
-				break;
-
-				case 'R':
-				drawRectangle(ecran, i*size_window/size+i*1, j*size_window/size+j*1, size_window/size, R);
-				break;
-
-				case 'J':
-				drawRectangle(ecran, i*size_window/size+i*1, j*size_window/size+j*1, size_window/size, J);
-				break;
-
-				case 'M':
-				drawRectangle(ecran, i*size_window/size+i*1, j*size_window/size+j*1, size_window/size, M);
-				break;
-
-				case 'G':
-				drawRectangle(ecran, i*size_window/size+i*1, j*size_window/size+j*1, size_window/size, G);
-				break;
-			}
-		}
-	}
-	SDL_Flip(ecran);
-}
 
 SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, int nbr_coups_max)
 {
@@ -91,7 +41,7 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 	position_l_1.y = 50;
 	position_o_2.x = 310;
 	position_o_2.y = 50;
-	position_r.x = 360;
+	position_r.x = 360;       //lettres de ColorFlood
 	position_r.y = 50;
 	position_f.x = 425;
 	position_f.y = 50;
@@ -212,7 +162,6 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 		if(flip)
 		{
 			flip = false;
-			/*display_menu(ecran, T, background_size, size_window);*/
 			SDL_Flip(ecran);
 			SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
 			sprintf(compteur_txt, "Taille : %2d", compteur);
@@ -242,7 +191,7 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 		}
 		time = new_time;
 	}
-	/*free_space(plateau, background_size);*/
+	free_grille(T, background_size);
 	SDL_FreeSurface(c);
 	SDL_FreeSurface(o_1);
 	SDL_FreeSurface(o_2);
@@ -276,24 +225,14 @@ SDL_Surface *initialize_screen(int size_window)
 	RGB init_screen = {0,0,0};	/*Fond d'écran noir*/		
 
 	ecran = SDL_SetVideoMode(2*size_window, size_window+120, 8, SDL_HWSURFACE);
-	/* nom de la fenêtre */
-	SDL_WM_SetCaption("ColorFlood", NULL);
+	SDL_WM_SetCaption("ColorFlood", NULL); // nom donné à la fenêtre
 
-	/*
-	SDL_Rect positionFond;
-	positionFond.x = 0;
-	positionFond.y = 0;
-	SDL_Surface *ima1=NULL;
-	ima1 = SDL_LoadBMP("img/fond1.bmp");
-	SDL_BlitSurface(ima1, NULL, ecran, &positionFond);
-	*/
 	
 	SDL_Surface *img=SDL_LoadBMP("./home.bmp");
     drawTexture(ecran, 50, 50, img);
     SDL_FreeSurface(img);
 	
-	/* écran tout blanc */
-	fillScreen(ecran, init_screen);
+	fillScreen(ecran, init_screen); //rend l'écran tout noir
 	
 	return ecran;
 }
@@ -302,12 +241,12 @@ void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
 {
 	SDL_Rect position1,position2,position3,position4;
 	SDL_Rect position_menu, position_rejouer;
-	SDL_Color fondNoir = {0, 0, 0, 42}, texteBlanc = {255, 255, 255, 42};	/* 4ème paramètre inutile */
+	SDL_Color fondNoir = {0, 0, 0, 0}, texteBlanc = {255, 255, 255, 255};
 	SDL_Surface *texte1,*texte2,*texte3,*texte4;
 	SDL_Surface *menu, *rejouer;
 
 	texte1 = TTF_RenderUTF8_Shaded(police, "Couleur à choisir :", texteBlanc, fondNoir);
-	texte2 = TTF_RenderUTF8_Shaded(police, "Afficher le solveur ", texteBlanc, fondNoir);
+	texte2 = TTF_RenderUTF8_Shaded(police, "Aide ", texteBlanc, fondNoir);
 	texte3 = TTF_RenderUTF8_Shaded(police, "Nombre de coups ", texteBlanc, fondNoir);
 	texte4 = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
 	menu = TTF_RenderUTF8_Shaded(police, "Menu", texteBlanc, fondNoir);
@@ -315,8 +254,8 @@ void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
 
 	position1.x = 25;
 	position1.y = 570;
-	position2.x = 785;
-	position2.y = 455;
+	position2.x = 848;
+	position2.y = 430;
 	position3.x = 500*(3/2.0)+40;
 	position3.y = 500/2.0;
 	position4.x = 500*(3/2.0)+90;

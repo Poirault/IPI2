@@ -25,19 +25,19 @@ int rand_a_b(int a, int b)
 /*
 Fonction créant la grille du jeu avec des couleur aléatoire
 */
-matrix grille(int m)
+matrix grille(int size)
 {
 	int a,b,i,test;
 	matrix mat1= NULL;
-	mat1=(char **)calloc(m, sizeof(char*));
-	for (i = 0; i < m; ++i)
+	mat1=(char **)calloc(size, sizeof(char*));
+	for (i = 0; i < size; ++i)
 	{
-		mat1[i]=(char *)calloc(m, sizeof(char));
+		mat1[i]=(char *)calloc(size, sizeof(char));
 	}
 	srand(time(NULL));
-	for (a = 0; a < m; ++a)
+	for (a = 0; a < size; ++a)
     {
-        for (b = 0; b < m; ++b)
+        for (b = 0; b < size; ++b)
         {
             test=0;
             test=rand_a_b(1,7);

@@ -29,21 +29,21 @@ int getche(void);
  /param M(matrice de caractère)
  /param c(coordonnée)
  /param color
- /param m
+ /param size
  /return matrix
  /brief Prend les coordonnées c(x;y) d'une matrice pour changer par la couleur 'color' 
 */
-matrix coloreplace(matrix M,coord c,char color,int m);
+matrix coloreplace(matrix M,coord c,char color,int size);
 
 /**
  /function composante_conn
  /param M(matrice de caractère)
  /param color
- /param m
+ /param size
  /return matrice(d'entier)
  /brief Renvoie une matrice d'entier donnant les cases à colorier (pas du tout optimal)
 */
-matrice composante_conn(matrix M,char color,int m);
+matrice composante_conn(matrix M,char color,int size);
 
 
-void modif_color(matrix M, char color, int m);
+void modif_color(matrix M, char color, int size);

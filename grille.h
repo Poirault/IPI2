@@ -27,9 +27,9 @@ int rand_a_b(int a, int b);
 
 /**
  /function grille
- /param m(taille du jeu)
+ /param size(taille du jeu)
  /return matrix(de caractère)
  /brief Fonction créant la grille du jeu avec des couleur aléatoire
 */
-matrix grille(int m);
+matrix grille(int size);
 
