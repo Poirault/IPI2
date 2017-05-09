@@ -23,7 +23,7 @@ int main()
 	int size, nb_coup_max;
 	int vict=1, tour=0;
 
-	char couleur;
+	char couleur, choix;
 
 	matrix M, P;
 
@@ -33,12 +33,17 @@ int main()
 
 	M=grille(size); //grille aléatoire du jeu
 	affiche_grille(M, size);
-	P = copie(M, size);
 
 	nb_coup_max = nmbre_coup(size); //formule empirique du jeu
 
-	solveur(P, size, nb_coup_max);
-
+	printf ("Voulez-vous afficher une solution ?\n Si oui tapez 'o' sinon tapez 'n' \n");
+	scanf("%c", &choix);
+	scanf("%c", &choix);
+	if (choix == 'o')
+	{
+		P = copie(M, size);
+		solveur(P, size, nb_coup_max);
+	}
 
 	printf("Number tour : %d/%d \n", tour, nb_coup_max);
 
