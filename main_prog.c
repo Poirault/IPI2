@@ -36,7 +36,7 @@ int main()
 
 	nb_coup_max = nmbre_coup(size); //formule empirique du jeu
 
-	printf ("Voulez-vous afficher une solution ?\n Si oui tapez 'o' sinon tapez 'n' \n");
+	printf ("Voulez-vous afficher une solution ?\n Si oui tapez 'o' sinon tapez 'n' puis entrez.\n");
 	scanf("%c", &choix);
 	scanf("%c", &choix);
 	if (choix == 'o')
