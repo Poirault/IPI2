@@ -523,15 +523,19 @@ void end_game(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nbr_coup
 {
 	SDL_Color texteBlanc = {255, 255, 255, 42};
 
-	SDL_Surface *texte = NULL;
+	SDL_Surface *texte = NULL, *image_gameover;
 	SDL_Rect position;
+
+	SDL_Rect position_gameover;
+
+	position_gameover.x = 248;
+	position_gameover.y = 12;
+
+	image_gameover = SDL_LoadBMP("img/game-over.bmp");
 
 	if (victoire(T, size, nbr_coup, nbr_coups_max) == 2)
 	{
-		texte = TTF_RenderUTF8_Blended(police, "GAME OVER", texteBlanc);
-		position.x = 200;
-		position.y = 230;
-		SDL_BlitSurface(texte, NULL, ecran, &position);
+		SDL_BlitSurface(image_gameover, NULL, ecran, &position_gameover);
 		SDL_Flip(ecran);
 		sleep(4);
 	}
