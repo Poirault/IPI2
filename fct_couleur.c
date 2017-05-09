@@ -1,5 +1,6 @@
 #include "fct_couleur.h"
 #include "grille.h"
+#include "fonctions_utiles.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
@@ -172,6 +173,8 @@ matrice composante_conn(matrix M,char color,int size){
 		}
 	}
 	return(mat1);
+
+	free_matrice(mat1, size);
 	/*
 	retour de la matrice de coloriage les 1 et 2 sont à colorier le reste (0) sont à laisser tel quel chez la mat de char 
 	*/
@@ -193,7 +196,7 @@ void modif_color(matrix M, char color, int size)
 			}
 		}
 	}
-
+	free_matrice(T, size);
 }
 		
 						

@@ -31,7 +31,7 @@ int main()
 	char nbr_coup_texte[50];
 
 	SDL_Surface *ecran = NULL;
-	TTF_Font *police1 = NULL, *police2 = NULL;
+	TTF_Font *police1 = NULL, *police2 = NULL, *police3 = NULL;
 
 	/*On initialise la SDL*/
 	const SDL_VideoInfo *info = NULL;
@@ -50,8 +50,9 @@ int main()
 
 	TTF_Init();
 
-	police1 = TTF_OpenFont("texte.ttf", 20);
-	police2 = TTF_OpenFont("texte.ttf", 70);
+	police1 = TTF_OpenFont("essai.ttf", 20);
+	police2 = TTF_OpenFont("stocky.ttf", 70);
+	police3 = TTF_OpenFont("texte.ttf", 20);
 
 	//SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL); icône de la fenêtre 
 
@@ -75,11 +76,11 @@ int main()
 
 							sprintf(nbr_coup_texte, "%d/%d", nbr_coup, nbr_coups_max);
 
-							initialize_text(ecran, nbr_coup_texte, police1);
+							initialize_text(ecran, nbr_coup_texte, police3);
 							
 							display_SDL(ecran, T, size, size_window, border_flag);
 
-							nbr_coup = loop_game(ecran, T, size, nbr_coups_max, nbr_coup_texte, police1, size_window, border_flag, &bouton, &out);
+							nbr_coup = loop_game(ecran, T, size, nbr_coups_max, nbr_coup_texte, police3, size_window, border_flag, &bouton, &out);
 
 							end_game(ecran, T, size, nbr_coup, nbr_coups_max, police2);
 
@@ -93,6 +94,7 @@ int main()
 
 	TTF_CloseFont(police1);
 	TTF_CloseFont(police2);
+	TTF_CloseFont(police3);
 	TTF_Quit();
 
 	SDL_Quit();

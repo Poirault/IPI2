@@ -16,7 +16,7 @@ main_prog.o: fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h coul
 main.o: fct_couleur.h victoire.h grille.h fonctions_utiles.h solveur.h SDL.h main.c 
 	$(CC) -c $(CFLAGS) main.c
 
-fct_couleur.o: fct_couleur.h grille.h fct_couleur.c
+fct_couleur.o: fct_couleur.h grille.h fonctions_utiles.h fct_couleur.c
 	$(CC) -c $(CFLAGS) fct_couleur.c
 
 victoire.o: victoire.h grille.h victoire.c

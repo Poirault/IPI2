@@ -1,4 +1,5 @@
 #include "grille.h"
+#include "fonctions_utiles.h"
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>

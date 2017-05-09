@@ -147,6 +147,16 @@ void free_grille(matrix M, int size)
 	free(M);
 }
 
+void free_matrice(matrice M, int size)
+{
+	int j;
+	for (j = 0; j < size; ++j)
+	{		
+		free(M[j]);
+	}
+	free(M);
+}
+
 void texte_victoire(int vict)
 {
 	if (vict==0)

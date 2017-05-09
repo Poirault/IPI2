@@ -35,7 +35,7 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 
 	position_c.x = 175;
 	position_c.y = 50;
-	position_o_1.x = 225;
+	position_o_1.x = 228;
 	position_o_1.y = 50;
 	position_l_1.x = 275;
 	position_l_1.y = 50;
@@ -53,8 +53,8 @@ SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, 
 	position_o_4.y = 50;
 	position_d.x = 610;
 	position_d.y = 50;
-	position_taille_jeu.x = 380;
-	position_taille_jeu.y = 310;
+	position_taille_jeu.x = 355;
+	position_taille_jeu.y = 313;
 
 
 	position_plus.x = 500;
@@ -247,7 +247,7 @@ void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
 
 	texte1 = TTF_RenderUTF8_Shaded(police, "Couleur à choisir :", texteBlanc, fondNoir);
 	texte2 = TTF_RenderUTF8_Shaded(police, "Aide ", texteBlanc, fondNoir);
-	texte3 = TTF_RenderUTF8_Shaded(police, "Nombre de coups ", texteBlanc, fondNoir);
+	texte3 = TTF_RenderUTF8_Shaded(police, "Coups Restant : ", texteBlanc, fondNoir);
 	texte4 = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
 	menu = TTF_RenderUTF8_Shaded(police, "Menu", texteBlanc, fondNoir);
 	rejouer = TTF_RenderUTF8_Shaded(police, "Rejouer", texteBlanc, fondNoir);
@@ -508,7 +508,7 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 		if (flip)
 		{
 			flip = false;
-			sprintf(nbr_coup_texte, "%d/%d", nbr_coup, nbr_coups_max);
+			sprintf(nbr_coup_texte, "%d", nbr_coups_max-nbr_coup);
 			texte = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
 			SDL_BlitSurface(texte, NULL, ecran, &position);
 			display_SDL(ecran, T, size,size_window,border_flag);

@@ -44,6 +44,8 @@ char commande_clavier();
 
 void free_grille(matrix M, int size);
 
+void free_matrice(matrice M, int size);
+
 void texte_victoire(int vict);
 
 
