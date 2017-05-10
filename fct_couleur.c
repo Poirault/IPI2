@@ -190,7 +190,7 @@ void modif_color(matrix M, char color, int size)
 	{
 		for (k = 0; k < size; ++k)
 		{
-			if(T[j][k]==1 || T[j][k]==2)
+			if(T[j][k]==1 || T[j][k]==2) //là où il y a des 1 et des 2 il faut changer par la nouvelle couleur (color)
 			{
 				M[j][k]=color;
 			}

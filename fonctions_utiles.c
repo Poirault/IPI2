@@ -21,7 +21,7 @@ en fonction de la taille du jeu de 1,7*tailleJeu
 int nmbre_coup(int size)
 {
 	int nmbre_coup, partie_entiere;
-	nmbre_coup= 1.7*size; //Pondération empirique
+	nmbre_coup= 1.9*size; //Pondération empirique
 	partie_entiere= floor(nmbre_coup)+1;
 	return partie_entiere;
 }
@@ -31,37 +31,37 @@ void affich_couleur(matrix M, int j, int k)
 	
 	if(M[j][k]=='B')
 	{
-	couleur("34");
+	couleur("34"); //bleu
 	printf("%10c", M[j][k]);
-	couleur("0");
+	couleur("0"); //remise à 0 sinon le texte reste bleu
 	}
 	if(M[j][k]=='G')
 	{
-	couleur("30");
+	couleur("30"); //gris 
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
 	if(M[j][k]=='J')
 	{
-	couleur("33");
+	couleur("33"); //jaune
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
 	if(M[j][k]=='M')
 	{
-	couleur("35");
+	couleur("35"); //magenta
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
 	if(M[j][k]=='R')
 	{
-	couleur("31");
+	couleur("31"); //rouge 
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
 	if(M[j][k]=='V')
 	{
-	couleur("32");
+	couleur("32"); //vert
 	printf("%10c", M[j][k]);
 	couleur("0");
 	}
@@ -72,11 +72,11 @@ void affich_couleur(matrix M, int j, int k)
 void affiche_grille(matrix M, int size)
 {
 	int j, k;
-	for (j = 0; j < size; ++j) //affiche le jeu avec les nouvelles couleurs
+	for (j = 0; j < size; ++j) 
 	{
 		for (k = 0; k < size; ++k)
 		{
-			affich_couleur(M,j,k);
+			affich_couleur(M,j,k); //affiche la lettre avec la bonne couleur
 		}
 	printf("\n");
 	}
@@ -108,7 +108,7 @@ char commande_clavier()
 	char o, couleur;
 	printf("Choisissez une couleur\n");
 	while(g!=0){
-		o=getche();
+		o=getche(); //lecture de la touche tapée au clavier
 		if(o=='b'){
 			couleur='B';
 			g=0;
@@ -163,7 +163,7 @@ void texte_victoire(int vict)
 	{
 		printf("Victory !");
 	}
-	else if (vict==2)
+	else if (vict==2) //nombre coup > nombre coup max
 	{
 		printf("Defeat !");
 	}

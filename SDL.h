@@ -53,13 +53,13 @@ void fillScreen(SDL_Surface *ecran, RGB couleur);
 
 /**
 * \function menu
-* \param *police_moyenne
-* \param *police_grande
+* \param *police_texte
+* \param *police_colorflood
 * \param size
-* \param nbr_coup_max
+* \param nb_coup_max
 * \brief //TODO
 */
-SDL_Surface *menu(TTF_Font *police_moyenne, TTF_Font *police_grande, int *size, int nbr_coups_max);
+SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size);
 
 
 /**
@@ -78,26 +78,26 @@ void drawTexture(SDL_Surface *ecran, int px, int py, SDL_Surface *ima);
 * \param size_xindow
 * \brief //TODO
 */
-SDL_Surface *initialize_screen(int size_window);
+SDL_Surface *initialize_screen(int taille_fenetre);
 
 
 /**
-* \function initialize_text
+* \function texte
 * \param *ecran
 * \param *nbr_coup_texte
 * \param *police
 * \brief Créer un rectangle à la position (x;y)
 */
-void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police);
+void texte(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police);
 
 
 /**
-* \function color_box
+* \function couleur_a_choisir
 * \param *ecran
-* \param size_window
+* \param taille_fenetre
 * \brief //TODO
 */
-void color_box(SDL_Surface *ecran,int size_window);
+void couleur_a_choisir(SDL_Surface *ecran,int taille_fenetre);
 
 
 /**
@@ -105,11 +105,11 @@ void color_box(SDL_Surface *ecran,int size_window);
 * \param *ecran
 * \param T
 * \param size
-* \param size_window
-* \param border_flag
+* \param taille_fenetre
+* \param separation
 * \brief //TODO
 */
-void display_SDL(SDL_Surface *ecran, matrix T, int size, int size_window, bool border_flag);
+void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, bool separation);
 
 
 /**
@@ -120,17 +120,17 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int size_window, bool b
 * \param nbr_coup_max
 * \param *nbr_coup_texte
 * \param *police
-* \param size_window
-* \param border_flag
+* \param taille_fenetre
+* \param separation
 * \param *bouton
 * \param *out
 * \brief Créer un rectangle à la position (x;y)
 */
-int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *nbr_coup_texte, TTF_Font *police,int size_window, bool border_flag, int* bouton, int* out);
+int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr_coup_texte, TTF_Font *police,int taille_fenetre, bool separation, int* bouton, int* out);
 
 
 /**
-* \function end_game
+* \function fin_jeu
 * \param *ecran
 * \param T
 * \param size
@@ -139,17 +139,17 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 * \param *police
 * \brief //TODO
 */
-void end_game(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nbr_coups_max, TTF_Font *police);
+void fin_jeu(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nb_coup_max, TTF_Font *police);
 
 
 /**
-* \function initialize_text
+* \function texte
 * \param *ecran
 * \param *nbr_coup_texte
 * \param *police
 * \brief //TODO
 */
-void initialize_text(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police);
+void texte(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police);
 
 
 #endif

@@ -32,16 +32,16 @@ int main()
 	scanf("%d", &size);
 
 	M=grille(size); //grille aléatoire du jeu
-	affiche_grille(M, size);
+	affiche_grille(M, size); //afiche le jeu sur le terminal avec les couleur
 
-	nb_coup_max = nmbre_coup(size); //formule empirique du jeu
+	nb_coup_max = nmbre_coup(size); //formule empirique du jeu pour le nombre de coup max
 
 	printf ("Voulez-vous afficher une solution ?\n Si oui tapez 'o' sinon tapez 'n' puis entrez.\n");
 	scanf("%c", &choix);
 	scanf("%c", &choix);
 	if (choix == 'o')
 	{
-		P = copie(M, size);
+		P = copie(M, size); //afin de ne pas modifier le jeu initial 
 		solveur(P, size, nb_coup_max);
 	}
 
@@ -61,9 +61,9 @@ int main()
 			printf("Number tour : %d/%d \n", tour, nb_coup_max);
 		}
 		
-		vict=victoire(M,size,tour,nb_coup_max);
+		vict=victoire(M,size,tour,nb_coup_max); //test s'il y a victoire, défaite (nombre de coup > nombre coup max) ou si le jeu continu
 
-		texte_victoire(vict);
+		texte_victoire(vict); //s'il y a victoire ou défaite écrit "victory" ou "defeat" en fonction
 	}
 
 	free_grille(M, size);

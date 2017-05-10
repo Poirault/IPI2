@@ -28,7 +28,7 @@ Fonction créant la grille du jeu avec des couleur aléatoire
 matrix grille(int size)
 {
 	int a,b,i,test;
-	matrix mat1= NULL;
+	matrix mat1= NULL; //initialisation du jeu
 	mat1=(char **)calloc(size, sizeof(char*));
 	for (i = 0; i < size; ++i)
 	{
@@ -40,7 +40,7 @@ matrix grille(int size)
         for (b = 0; b < size; ++b)
         {
             test=0;
-            test=rand_a_b(1,7);
+            test=rand_a_b(1,7); //tirage au sort random d'une couleur
             
             if(test==1)
             {
@@ -65,14 +65,10 @@ matrix grille(int size)
             if(test==6)
             {
                 mat1[a][b]='V'; //Vert
-            }
-                     
+            }         
         }
     }
-
 	return mat1;
-
-
 }
 
 
