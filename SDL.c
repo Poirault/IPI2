@@ -387,7 +387,7 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 	SDL_Color fondNoir = {0, 0, 0, 42}, texteBlanc = {255, 255, 255, 42};
 	SDL_Rect position;
 
-	position.x = 500*(3/2.0)+90;
+	position.x = 500*(3/2.0)+89;
 	position.y = 500/2.0+30;
 
 
@@ -508,6 +508,8 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nbr_coups_max, char *n
 		if (flip)
 		{
 			flip = false;
+			SDL_Flip(ecran);
+			//SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
 			sprintf(nbr_coup_texte, "%d", nbr_coups_max-nbr_coup);
 			texte = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
 			SDL_BlitSurface(texte, NULL, ecran, &position);

@@ -74,9 +74,9 @@ int main()
 							size_window = 500;
 							ecran = initialize_screen(size_window);
 
-							sprintf(nbr_coup_texte, "%d/%d", nbr_coup, nbr_coups_max);
+							sprintf(nbr_coup_texte, "%d", nbr_coups_max-nbr_coup);
 
-							initialize_text(ecran, nbr_coup_texte, police3);
+							initialize_text(ecran, nbr_coup_texte , police3);
 							
 							display_SDL(ecran, T, size, size_window, border_flag);
 
