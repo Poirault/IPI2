@@ -168,3 +168,5 @@ void texte_victoire(int vict)
 		printf("Defeat !");
 	}
 }
+
+//free_solution()

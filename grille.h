@@ -11,6 +11,8 @@
 
 /**
 * \file grille.h
+* \brief On y trouve la structure matrix(grille du jeu avec des caractères représentant les couleurs)
+et deux fonctions permettant de créer un jeu aléatoire
 */
 
 

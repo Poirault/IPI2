@@ -12,6 +12,12 @@
 #ifndef SDL_H
 #define SDL_H
 
+/**
+* \file SDL.h
+* \brief On y trouve la structure RGB (pour faire toutes les couleurs à partir du rouge, vert et bleu)
+et toutes les fonctions permettant au SDL de fonctionner et agréable graphyquement
+*/
+
 
 struct RGB
 {

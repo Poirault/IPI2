@@ -12,6 +12,7 @@
 
 /**
 * \file victoire.h
+* \brief On y trouve la fonction permettant de tester s'il y a victoire, défaite ou si le jeu continu
 */
 
 /**

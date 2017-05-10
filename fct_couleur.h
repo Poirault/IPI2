@@ -13,7 +13,8 @@
 
 
 /**
-* \file coul-fct1_2.h
+* \file fct_couleur.h
+* \brief On y trouve la sructure matrice(d'entier) et des fonctions permettant de faire avancer le jeu en fonction des couleurs
 */
 
 typedef struct coord coord;

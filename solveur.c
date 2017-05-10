@@ -46,7 +46,6 @@ void voisin_random(matrix M, int size, char couleur) {
 			}
 		}
 	}
-
 }
 
 
@@ -172,6 +171,9 @@ int solveur(matrix M, int size, int nb_coup_max)
 		printf("%c, ", solution[i]);
 	}
 	printf("\nMaintenant à vous de jouer ! \n");
+
+	free_grille(P, size);
+	free_matrice(T, size);
 
 	return tour;
 }
