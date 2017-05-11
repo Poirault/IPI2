@@ -88,7 +88,7 @@ SDL_Surface *initialize_screen(int taille_fenetre);
 * \param *police
 * \brief Créer un rectangle à la position (x;y)
 */
-void texte(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police);
+void texte(SDL_Surface *ecran, TTF_Font *police, TTF_Font *police_coup);
 
 
 /**
@@ -113,7 +113,7 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, boo
 
 
 /**
-* \function loop_game
+* \function boucle_jeu
 * \param *ecran
 * \param T
 * \param size
@@ -126,7 +126,7 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, boo
 * \param *out
 * \brief Créer un rectangle à la position (x;y)
 */
-int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr_coup_texte, TTF_Font *police,int taille_fenetre, bool separation, int* bouton, int* out);
+int boucle_jeu(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr_coup_texte, TTF_Font *police,int taille_fenetre, bool separation, int* bouton, int* out);
 
 
 /**
@@ -149,7 +149,6 @@ void fin_jeu(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nb_coup_m
 * \param *police
 * \brief //TODO
 */
-void texte(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police);
 
 
 #endif

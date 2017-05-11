@@ -46,21 +46,21 @@ SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size
 	position_f.y = 50;
 	position_l_2.x = 475;
 	position_l_2.y = 50;
-	position_o_3.x = 510;
+	position_o_3.x = 505;
 	position_o_3.y = 50;
-	position_o_4.x = 560;
+	position_o_4.x = 550;
 	position_o_4.y = 50;
-	position_d.x = 610;
+	position_d.x = 595;
 	position_d.y = 50;
-	position_taille_jeu.x = 355;
+	position_taille_jeu.x = 330;
 	position_taille_jeu.y = 313;
 
 
 	position_plus.x = 500;
 	position_plus.y = 300;
-	position_moins.x = 300;
+	position_moins.x = 250;
 	position_moins.y = 300;
-	position_jouer.x = 320;
+	position_jouer.x = 290;
 	position_jouer.y = 450;
 
 	int taille_fenetre = 800;
@@ -82,10 +82,6 @@ SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size
 	icone_moins = SDL_LoadBMP("img/moins.bmp");      //telechargement des images 
 	icone_jouer = SDL_LoadBMP("img/finalplay.bmp");
 
-	int time_between_moves = 875;
-
-	unsigned long time = SDL_GetTicks();
-	unsigned long time_next_move = time + time_between_moves;
 	while(continuer)
 	{
 		while(SDL_PollEvent(&event))
@@ -117,11 +113,11 @@ SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size
 					{
 						if(x >= 500 && x < 544 && compteur < 24)
 							compteur++;
-						else if(x >= 300 && x < 344 && compteur > 3)
+						else if(x >= 250 && x < 294 && compteur > 3)
 							compteur--;
 						flip = true;
 					}
-					else if(x >= 320 && x < 520 && y >= 450 && y < 650)
+					else if(x >= 290 && x < 490 && y >= 450 && y < 650)
 					{
 						*size = compteur;
 						continuer = 0;
@@ -129,8 +125,6 @@ SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size
 				}
 			}
 		}
-
-		if(time > time_next_move)
 
 		if(flip)
 		{
@@ -156,13 +150,6 @@ SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size
 			SDL_Flip(ecran);
 		}
 
-		unsigned long new_time = SDL_GetTicks();
-		unsigned long elapsed_time = new_time - time;
-		if(elapsed_time < 1000/60)
-		{
-			SDL_Delay(1000/60 - elapsed_time);
-		}
-		time = new_time;
 	}
 	SDL_FreeSurface(c);
 	SDL_FreeSurface(o_1);
@@ -210,70 +197,81 @@ SDL_Surface *initialize_screen(int taille_fenetre)
 	return ecran;
 }
 
-void texte(SDL_Surface *ecran,char *nbr_coup_texte, TTF_Font *police)
+void texte(SDL_Surface *ecran, TTF_Font *police, TTF_Font *police_coup)
 {
-	SDL_Rect position1,position2,position3,position4;
+	SDL_Rect position1,position2,position3;
 	SDL_Rect position_menu, position_rejouer;
 	SDL_Color fondNoir = {0, 0, 0, 0}, texteBlanc = {255, 255, 255, 255};
-	SDL_Surface *texte1,*texte2,*texte3,*texte4;
+	SDL_Surface *texte1,*texte2,*texte3;
 	SDL_Surface *menu, *rejouer;
 
-	texte1 = TTF_RenderUTF8_Shaded(police, "Couleur à choisir :", texteBlanc, fondNoir);
+	texte1 = TTF_RenderUTF8_Shaded(police, ": Couleur à choisir", texteBlanc, fondNoir);
 	texte2 = TTF_RenderUTF8_Shaded(police, "Aide ", texteBlanc, fondNoir);
-	texte3 = TTF_RenderUTF8_Shaded(police, "Coup(s) Restant(s) : ", texteBlanc, fondNoir);
-	texte4 = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
+	texte3 = TTF_RenderUTF8_Shaded(police_coup, "Coup(s) Restant(s) : ", texteBlanc, fondNoir);
 	menu = TTF_RenderUTF8_Shaded(police, "Menu", texteBlanc, fondNoir);
 	rejouer = TTF_RenderUTF8_Shaded(police, "Rejouer", texteBlanc, fondNoir);
 
-	position1.x = 25;
+	position1.x = 600;
 	position1.y = 570;
-	position2.x = 848;
-	position2.y = 430;
-	position3.x = 500*(3/2.0)+40;
+	position2.x = 885;
+	position2.y = 560;
+	position3.x = 500*(3/2.0)-110;
 	position3.y = 500/2.0;
-	position4.x = 500*(3/2.0)+90;
-	position4.y = 500/2.0+30;
 
-	position_menu.x = 802;
-	position_menu.y = 100;
-	position_rejouer.x = 890;
-	position_rejouer.y = 100;
+	position_menu.x = 672;
+	position_menu.y = 127;
+	position_rejouer.x = 865;
+	position_rejouer.y = 127;
 
 	SDL_BlitSurface(texte1, NULL, ecran, &position1);
 	SDL_BlitSurface(texte2, NULL, ecran, &position2);
 	SDL_BlitSurface(texte3, NULL, ecran, &position3);
-	SDL_BlitSurface(texte4, NULL, ecran, &position4);
 	SDL_BlitSurface(menu, NULL, ecran, &position_menu);
 	SDL_BlitSurface(rejouer, NULL, ecran, &position_rejouer);
 	
 	SDL_FreeSurface(texte1);
 	SDL_FreeSurface(texte2);
 	SDL_FreeSurface(texte3);
-	SDL_FreeSurface(texte4);
 	SDL_FreeSurface(menu);
 	SDL_FreeSurface(rejouer);
 }
 
 void couleur_a_choisir(SDL_Surface *ecran,int taille_fenetre)
 {
+	SDL_Surface *image_aide,*image_menu,*image_rejouer;
+	SDL_Rect position_aide;
+	SDL_Rect position_menu;
+	SDL_Rect position_rejouer;
+
+	position_aide.x = taille_fenetre*(3/2.0)+120;
+	position_aide.y = taille_fenetre/2.0+225;
+	position_menu.x = taille_fenetre*(3/2.0)-100;
+	position_menu.y = 25;
+	position_rejouer.x = taille_fenetre*(3/2.0)+100;
+	position_rejouer.y = 25;
+
+	image_aide = SDL_LoadBMP("img/ide.bmp");
+	image_menu = SDL_LoadBMP("img/menu.bmp");
+	image_rejouer = SDL_LoadBMP("img/rejouer.bmp");
+
 	RGB J = {255, 255, 102}; //Jaune
 	RGB R = {255, 20, 20 };  //Rouge
 	RGB G = {96, 96, 96}; //Gris
 	RGB V = {0, 102, 0}; //Vert
 	RGB B = {30,30,150}; //Bleu
 	RGB M = {102, 0, 51}; //Magenta
-	RGB solveur = {66,66,66};
-	RGB menu = {100,100,100};
-	RGB rejouer = {150,150,150};
-	drawRectangle(ecran, 550, 225, (taille_fenetre-40)/7, G);
-	drawRectangle(ecran, 550, 325, (taille_fenetre-40)/7, R);
-	drawRectangle(ecran, 550, 425, (taille_fenetre-40)/7, J);
-	drawRectangle(ecran, 550, 525, (taille_fenetre-40)/7, V);
-	drawRectangle(ecran, 550, 625, (taille_fenetre-40)/7, B);
-	drawRectangle(ecran, 550, 725, (taille_fenetre-40)/7, M);	
-	drawRectangle(ecran, taille_fenetre/2.0+100,taille_fenetre*(3/2.0)+80, (taille_fenetre-40)/6, solveur);	
-	drawRectangle(ecran, 25,taille_fenetre*(3/2.0)+40, (taille_fenetre-40)/6, menu);	
-	drawRectangle(ecran, 25,taille_fenetre*(3/2.0)+135, (taille_fenetre-40)/6, rejouer);	
+	drawRectangle(ecran, 553, 25, (taille_fenetre-40)/7, G);
+	drawRectangle(ecran, 553, 125, (taille_fenetre-40)/7, R);
+	drawRectangle(ecran, 553, 225, (taille_fenetre-40)/7, J);
+	drawRectangle(ecran, 553, 325, (taille_fenetre-40)/7, V);
+	drawRectangle(ecran, 553, 425, (taille_fenetre-40)/7, B);
+	drawRectangle(ecran, 553, 525, (taille_fenetre-40)/7, M);
+	SDL_BlitSurface(image_aide, NULL, ecran, &position_aide);
+	SDL_BlitSurface(image_menu, NULL, ecran, &position_menu);
+	SDL_BlitSurface(image_rejouer, NULL, ecran, &position_rejouer);	
+	/*drawRectangle(ecran, taille_fenetre/2.0+225,taille_fenetre*(3/2.0)+120, (taille_fenetre-40)/6, aide);	
+	drawRectangle(ecran, 25,taille_fenetre*(3/2.0)-100, (taille_fenetre-40)/5, menu);	
+	drawRectangle(ecran, 25,taille_fenetre*(3/2.0)+100, (taille_fenetre-40)/5, rejouer);	*/
 }
 
 
@@ -297,27 +295,27 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, boo
 				switch (couleur)
 				{
 					case 'B':
-					drawRectangle(ecran, i*taille_fenetre/size+10+i*2, j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size, taille_fenetre/size, B);
+					drawRectangle(ecran, (i*taille_fenetre/size+10+i*2)-5, (j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size)-200, taille_fenetre/size, B);
 					break;
 
 					case 'V':
-					drawRectangle(ecran, i*taille_fenetre/size+10+i*2, j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size, taille_fenetre/size, V);
+					drawRectangle(ecran, (i*taille_fenetre/size+10+i*2)-5, (j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size)-200, taille_fenetre/size, V);
 					break;
 
 					case 'R':
-					drawRectangle(ecran, i*taille_fenetre/size+10+i*2, j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size, taille_fenetre/size, R);
+					drawRectangle(ecran, (i*taille_fenetre/size+10+i*2)-5, (j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size)-200, taille_fenetre/size, R);
 					break;
 
 					case 'J':
-					drawRectangle(ecran, i*taille_fenetre/size+10+i*2, j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size, taille_fenetre/size, J);
+					drawRectangle(ecran, (i*taille_fenetre/size+10+i*2)-5, (j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size)-200, taille_fenetre/size, J);
 					break;
 
 					case 'M':
-					drawRectangle(ecran, i*taille_fenetre/size+10+i*2, j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size, taille_fenetre/size, M);
+					drawRectangle(ecran, (i*taille_fenetre/size+10+i*2)-5, (j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size)-200, taille_fenetre/size, M);
 					break;
 
 					case 'G':
-					drawRectangle(ecran, i*taille_fenetre/size+10+i*2, j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size, taille_fenetre/size, G);
+					drawRectangle(ecran, (i*taille_fenetre/size+10+i*2)-5,(j*taille_fenetre/size+taille_fenetre*(1.0/2)+j*2-size)-200, taille_fenetre/size, G);
 					break;
 				}
 			else //carré du jeu collé
@@ -352,7 +350,7 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, boo
 	SDL_Flip(ecran);
 }
 
-int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr_coup_texte, TTF_Font *police, int taille_fenetre, bool separation, int* bouton, int* out)
+int boucle_jeu(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr_coup_texte, TTF_Font *police, int taille_fenetre, bool separation, int* bouton, int* out)
 {
 	int continuer = 1, nbr_coup = 0, exit = 0;
 	SDL_Surface *texte;
@@ -360,8 +358,11 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr
 	SDL_Color fondNoir = {0, 0, 0, 42}, texteBlanc = {255, 255, 255, 42};
 	SDL_Rect position;
 
-	position.x = 500*(3/2.0)+89;
-	position.y = 500/2.0+30;
+	position.x = 500*(3/2.0)+40;
+	position.y = 500/2.0+70;
+	
+
+
 
 
 	couleur_a_choisir(ecran,taille_fenetre); //disposition des couleurs pouvant être choisies
@@ -383,41 +384,41 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr
 			{
 				int x = event.button.x;
 				int y = event.button.y;
-				int cons=(taille_fenetre-40)/6;
+				int cons=(taille_fenetre-40)/5;
 
-				if((y >= 550) && (y <= 616)) //position case grise
+				if((y >= 553) && (y <= 619)) //position case grise
 				{
-					if((x>= 225) && (x<=291))
+					if((x>= 25) && (x<=91))
 					{
 						modif_color(T, 'G', size);
 						nbr_coup++;
 						flip = true;
 					}
-					if((x>= 325) && (x<=391)) //rouge
+					if((x>= 125) && (x<=191)) //rouge
 					{
 						modif_color(T, 'R', size);
 						nbr_coup++;
 						flip = true;
 					}
-					if((x>= 425) && (x<=491)) //jaune
+					if((x>= 225) && (x<=291)) //jaune
 					{
 						modif_color(T, 'J', size);
 						nbr_coup++;
 						flip = true;
 					}
-					if((x>= 525) && (x<=591)) //vert
+					if((x>= 325) && (x<=391)) //vert
 					{
 						modif_color(T, 'V', size);
 						nbr_coup++;
 						flip = true;
 					}
-					if((x>= 625) && (x<=691)) //bleu
+					if((x>= 425) && (x<=491)) //bleu
 					{
 						modif_color(T, 'B', size);
 						nbr_coup++;
 						flip = true;
 					}
-					if((x>= 725) && (x<=791)) //magenta
+					if((x>= 525) && (x<=591)) //magenta
 					{
 						modif_color(T, 'M', size);
 						nbr_coup++;
@@ -449,14 +450,15 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr
 				*/
 
 				//menu
-				if(y >= 25 && y < (25+cons) && x >= taille_fenetre*(3/2.0)+40 && x < (taille_fenetre*(3/2.0)+40+cons))
+		
+				if(y >= 25 && y < (25+cons) && x >= taille_fenetre*(3/2.0)-100 && x < (taille_fenetre*(3/2.0)-100+cons))
 				{
 					*bouton = 1;
 					exit = 1;
 					break;
 				}
 				//rejouer
-				if(y >= 25 && y < (25+cons) && x >= taille_fenetre*(3/2.0)+135 && x < (taille_fenetre*(3/2.0)+135+cons))
+				if(y >= 25 && y < (25+cons) && x >= taille_fenetre*(3/2.0)+100 && x < (taille_fenetre*(3/2.0)+100+cons))
 				{
 					*bouton = 2;
 					exit = 1;
@@ -483,14 +485,16 @@ int loop_game(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr
 		{
 			flip = false;
 			SDL_Flip(ecran);
-			//SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 0, 0, 0));
+			SDL_FillRect(ecran, &position , SDL_MapRGB(ecran->format, 0, 0, 0));
 			sprintf(nbr_coup_texte, "%d", nb_coup_max-nbr_coup);
 			texte = TTF_RenderUTF8_Shaded(police, nbr_coup_texte, texteBlanc, fondNoir);
 			SDL_BlitSurface(texte, NULL, ecran, &position);
 			display_SDL(ecran, T, size,taille_fenetre,separation);
 			SDL_Flip(ecran);
 			SDL_FreeSurface(texte);
+		
 		}
+
 	}
 	return nbr_coup;
 }

@@ -31,7 +31,7 @@ int main()
 	char nbr_coup_texte[50];
 
 	SDL_Surface *ecran = NULL;
-	TTF_Font *police1 = NULL, *police2 = NULL, *police3 = NULL;
+	TTF_Font *police1 = NULL, *police2 = NULL, *police3 = NULL, *police4 = NULL;
 
 	/*On initialise la SDL*/
 	const SDL_VideoInfo *info = NULL;
@@ -52,7 +52,8 @@ int main()
 
 	police1 = TTF_OpenFont("essai.ttf", 20); //police pour le choix taille du jeu
 	police2 = TTF_OpenFont("stocky.ttf", 70); //police pour "Color Flood" dans le menu
-	police3 = TTF_OpenFont("texte.ttf", 20); //police pour le texte dans le déroulement du jeu
+	police3 = TTF_OpenFont("texte.ttf", 20);
+	police4 = TTF_OpenFont("texte.ttf", 40); //police pour le texte dans le déroulement du jeu
 
 	//SDL_WM_SetIcon(SDL_LoadBMP("img/colorflood.bmp"), NULL); icône de la fenêtre 
 
@@ -76,11 +77,11 @@ int main()
 
 							sprintf(nbr_coup_texte, "%d", nb_coup_max-nbr_coup); //pour les coup(s) restant(s)
 
-							texte(ecran, nbr_coup_texte , police3);
+							texte(ecran, police3, police4);
 							
 							display_SDL(ecran, T, size, size_window, separation); //affiche la grille du jeu
 
-							nbr_coup = loop_game(ecran, T, size, nb_coup_max, nbr_coup_texte, police3, size_window, separation, &bouton, &out); //fait tourner le jeu jusque victoire ou défaite
+							nbr_coup = boucle_jeu(ecran, T, size, nb_coup_max, nbr_coup_texte, police4, size_window, separation, &bouton, &out); //fait tourner le jeu jusque victoire ou défaite
 
 							fin_jeu(ecran, T, size, nbr_coup, nb_coup_max, police2); //affichage en fonction de victoire ou défaite
 
@@ -88,9 +89,11 @@ int main()
 						} while (bouton == 2 && out != 1); //tant que le joueur ne ferme pas le jeu ou ne clique pas sur menu
 
 						free_grille(T, size);
-						//free_grille(grille_copie, size); ?
+						//free_grille(grille_copie, size);
+					
 				}
 		} while (bouton == 1 && size != 0 && out != 1); //tant que le joueur ne ferme pas le jeu
+
 
 	TTF_CloseFont(police1);
 	TTF_CloseFont(police2);
