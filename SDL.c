@@ -269,9 +269,9 @@ void couleur_a_choisir(SDL_Surface *ecran,int taille_fenetre)
 	SDL_BlitSurface(image_aide, NULL, ecran, &position_aide);
 	SDL_BlitSurface(image_menu, NULL, ecran, &position_menu);
 	SDL_BlitSurface(image_rejouer, NULL, ecran, &position_rejouer);	
-	/*drawRectangle(ecran, taille_fenetre/2.0+225,taille_fenetre*(3/2.0)+120, (taille_fenetre-40)/6, aide);	
-	drawRectangle(ecran, 25,taille_fenetre*(3/2.0)-100, (taille_fenetre-40)/5, menu);	
-	drawRectangle(ecran, 25,taille_fenetre*(3/2.0)+100, (taille_fenetre-40)/5, rejouer);	*/
+	SDL_FreeSurface(image_aide);
+	SDL_FreeSurface(image_menu);
+	SDL_FreeSurface(image_rejouer);
 }
 
 
@@ -492,7 +492,6 @@ int boucle_jeu(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nb
 			display_SDL(ecran, T, size,taille_fenetre,separation);
 			SDL_Flip(ecran);
 			SDL_FreeSurface(texte);
-		
 		}
 
 	}
@@ -508,8 +507,8 @@ void fin_jeu(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nb_coup_m
 
 	SDL_Rect position_gameover;
 
-	position_gameover.x = 248;
-	position_gameover.y = 12;
+	position_gameover.x = 48;
+	position_gameover.y = 5;
 
 	image_gameover = SDL_LoadBMP("img/game-over.bmp");
 
@@ -522,12 +521,13 @@ void fin_jeu(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nb_coup_m
 	if (victoire(T, size, nbr_coup, nb_coup_max) == 0) //victoire
 	{
 		texte = TTF_RenderUTF8_Blended(police, "WIN", texteBlanc);
-		position.x = 450;
+		position.x = 215;
 		position.y = 230;
 		SDL_BlitSurface(texte, NULL, ecran, &position);
 		SDL_Flip(ecran);
 		sleep(2);
 	}
+	SDL_FreeSurface(image_gameover);
 	SDL_FreeSurface(texte);
 }
 

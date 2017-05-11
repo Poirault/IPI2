@@ -68,7 +68,7 @@ int main()
 					matrix grille_copie; //pour pouvoir rejouer si le joueur le souhaite
 
 					
-					nb_coup_max=1.9*size;
+					nb_coup_max=2.1*size;
 					do 
 						{
 							grille_copie = copie(T, size);
