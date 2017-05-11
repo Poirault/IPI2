@@ -58,8 +58,19 @@ void fillScreen(SDL_Surface *ecran, RGB couleur);
 * \param size
 * \param nb_coup_max
 * \brief //TODO
+*/	
+SDL_Surface *regle(TTF_Font *police_texte,TTF_Font *police_colorflood,TTF_Font *police_regle, SDL_Surface *ecran, int *size);
+
+
+/**
+* \function menu
+* \param *police_texte
+* \param *police_colorflood
+* \param size
+* \param nb_coup_max
+* \brief //TODO
 */
-SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, int *size);
+SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, TTF_Font *police_regle, int *size);
 
 
 /**

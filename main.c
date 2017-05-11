@@ -60,7 +60,7 @@ int main()
 
 	do 
 		{
-			ecran = menu(police1, police2, &size); //mise en place du menu
+			ecran = menu(police1, police2, police3, &size); //mise en place du menu
 
 			if (size != 0)
 				{
