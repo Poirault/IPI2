@@ -300,12 +300,6 @@ SDL_Surface *initialize_screen(int taille_fenetre)
 
 	ecran = SDL_SetVideoMode(2*taille_fenetre, taille_fenetre+120, 8, SDL_HWSURFACE);
 	SDL_WM_SetCaption("ColorFlood", NULL); // nom donné à la fenêtre
-
-	/*
-	SDL_Surface *img=SDL_LoadBMP("home.bmp");
-    drawTexture(ecran, 50, 50, img);
-    SDL_FreeSurface(img);
-    */
 	
 	fillScreen(ecran, init_screen); //rend l'écran noir
 	
@@ -365,7 +359,7 @@ void couleur_a_choisir(SDL_Surface *ecran,int taille_fenetre)
 	position_rejouer.x = taille_fenetre*(3/2.0)+100;
 	position_rejouer.y = 25;
 
-	image_aide = SDL_LoadBMP("img/ide.bmp");
+	image_aide = SDL_LoadBMP("img/aide.bmp");
 	image_menu = SDL_LoadBMP("img/menu.bmp");
 	image_rejouer = SDL_LoadBMP("img/rejouer.bmp");
 
@@ -540,32 +534,8 @@ int boucle_jeu(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nb
 						flip = true;
 					}
 				}
-				// solveur
-				/*
-				if(y >= (taille_fenetre/2.0+100) && y < (taille_fenetre/2.0+100+cons) && x >= (taille_fenetre*(3/2.0)+80) && x < (taille_fenetre*(3/2.0)+80+cons))
-				{	
-					sprintf(solveur_info, "Solveur en cours...");
-					texte1 = TTF_RenderUTF8_Blended(police, solveur_info, texteNoir);
-					SDL_BlitSurface(texte1, NULL, ecran, &position1);
-					SDL_Flip(ecran); 
-				*/
-					/*chemin = solveur_perf(T, size, &nbr_coups_min);*/
-				/*
-					SDL_FreeSurface(texte1);
-				*/
-					/*solveur_box(ecran,chemin,nbr_coups_min);*/
-				/*
-					sprintf(solveur_info, "Solution possible :");
-					texte2 = TTF_RenderUTF8_Blended(police, solveur_info, texteNoir);
-					SDL_BlitSurface(texte2, NULL, ecran, &position1);
-					SDL_Flip(ecran);
-					flip = true;
-					free(chemin);
-				}
-				*/
 
 				//menu
-		
 				if(y >= 25 && y < (25+cons) && x >= taille_fenetre*(3/2.0)-100 && x < (taille_fenetre*(3/2.0)-100+cons))
 				{
 					*bouton = 1;

@@ -42,7 +42,9 @@ int main()
 	if (choix == 'o')
 	{
 		P = copie(M, size); //afin de ne pas modifier le jeu initial 
-		solveur(P, size, nb_coup_max);
+		resolution(P, size);
+		affiche_grille(M, size);
+		free_grille(P, size);
 	}
 
 	printf("Number tour : %d/%d \n", tour, nb_coup_max);
@@ -67,7 +69,6 @@ int main()
 	}
 
 	free_grille(M, size);
-	free_grille(P, size);
 
 	return 0;
 

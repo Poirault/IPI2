@@ -1,38 +1,37 @@
+
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #include <string.h>
 
-#include "grille.h"
-#include "victoire.h"
 #include "fct_couleur.h"
+#include "grille.h"
+#include "fonctions_utiles.h"
+#include "victoire.h"
+#include "couleur.h"
 
-/**
-* \file solveur.h
-* \brief Contient la fonction de solveur et toutes celles qui aident à sa faisabilité
-*/
+int nbcouleur(matrix M, int m);
 
+int composante_conn2(matrix M,char color,int m);
 
-/**
-* \function solveur
-* \param M (matrix du jeu)
-* \param size
-* \param couleur
-* \brief Cherche un voisin random mais regarde s'il est autour quand même
-*/
-void voisin_random(matrix M, int size, char couleur);
+char* createlist(int n);
 
+void test(char* l, int n);
 
-/**
-* \function solveur
-* \param M (matrix du jeu)
-* \param size
-* \param nb_coup_max
-* \return Permet de retourner une solution trouvée.
-* \brief Le temps peut-être un peu long pour une taille m elevée.
-*/
-int solveur(matrix M, int size, int nb_coup_max);
+int resolution(matrix M, int m);
 
+int max(int a,int z,int e,int r,int w);
 
+char best(matrix M, int m);
 
-int majoration(matrix M, int size, int nb_coup_max);
+int nope(matrix M, char c, int m);
+
+int testvictoire(matrix M, char* l, int n, int m);
+
+void thelist(matrix M,char* l, int n,int i,int m,char* liste);

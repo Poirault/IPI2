@@ -46,7 +46,6 @@ void drawRectangle(SDL_Surface *ecran, int px, int py, int size, RGB couleur);
 * \function fillScreen
 * \param *ecran
 * \param couleur
-* \brief //TODO
 */
 void fillScreen(SDL_Surface *ecran, RGB couleur);
 
@@ -55,9 +54,9 @@ void fillScreen(SDL_Surface *ecran, RGB couleur);
 * \function menu
 * \param *police_texte
 * \param *police_colorflood
+* \param *police_regle
 * \param size
-* \param nb_coup_max
-* \brief //TODO
+* \brief permet d'ouvrir une fenetre pour afficher les règles du jeu
 */	
 SDL_Surface *regle(TTF_Font *police_texte,TTF_Font *police_colorflood,TTF_Font *police_regle, SDL_Surface *ecran, int *size);
 
@@ -66,9 +65,9 @@ SDL_Surface *regle(TTF_Font *police_texte,TTF_Font *police_colorflood,TTF_Font *
 * \function menu
 * \param *police_texte
 * \param *police_colorflood
-* \param size
-* \param nb_coup_max
-* \brief //TODO
+* \param police_regle
+* \param *size
+* \brief permet d'afficher le menu
 */
 SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, TTF_Font *police_regle, int *size);
 
@@ -79,7 +78,6 @@ SDL_Surface *menu(TTF_Font *police_texte, TTF_Font *police_colorflood, TTF_Font 
 * \param px
 * \param py
 * \param *ima
-* \brief //TODO
 */
 void drawTexture(SDL_Surface *ecran, int px, int py, SDL_Surface *ima);
 
@@ -87,7 +85,7 @@ void drawTexture(SDL_Surface *ecran, int px, int py, SDL_Surface *ima);
 /**
 * \function initialize_scree
 * \param size_xindow
-* \brief //TODO
+* \brief initialise l'écran du menu et donne un nom à la fenetre
 */
 SDL_Surface *initialize_screen(int taille_fenetre);
 
@@ -95,8 +93,8 @@ SDL_Surface *initialize_screen(int taille_fenetre);
 /**
 * \function texte
 * \param *ecran
-* \param *nbr_coup_texte
 * \param *police
+* \param *police_coup
 * \brief Créer un rectangle à la position (x;y)
 */
 void texte(SDL_Surface *ecran, TTF_Font *police, TTF_Font *police_coup);
@@ -106,7 +104,7 @@ void texte(SDL_Surface *ecran, TTF_Font *police, TTF_Font *police_coup);
 * \function couleur_a_choisir
 * \param *ecran
 * \param taille_fenetre
-* \brief //TODO
+* \brief dessine les carrés des couleurs à choisir dans le jeu, et les images pour menu, rejouer etc..
 */
 void couleur_a_choisir(SDL_Surface *ecran,int taille_fenetre);
 
@@ -118,7 +116,7 @@ void couleur_a_choisir(SDL_Surface *ecran,int taille_fenetre);
 * \param size
 * \param taille_fenetre
 * \param separation
-* \brief //TODO
+* \brief affiche la grille du jeu proprement
 */
 void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, bool separation);
 
@@ -135,7 +133,7 @@ void display_SDL(SDL_Surface *ecran, matrix T, int size, int taille_fenetre, boo
 * \param separation
 * \param *bouton
 * \param *out
-* \brief Créer un rectangle à la position (x;y)
+* \brief fait tourner le jeu jusqu'à ce qu'on ne le quite pas ou qu'il n'est pas fini
 */
 int boucle_jeu(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nbr_coup_texte, TTF_Font *police,int taille_fenetre, bool separation, int* bouton, int* out);
 
@@ -148,18 +146,9 @@ int boucle_jeu(SDL_Surface *ecran, matrix T, int size, int nb_coup_max, char *nb
 * \param nbr_coup
 * \param nbr_coup_max
 * \param *police
-* \brief //TODO
+* \brief affiche 'win' ou 'game over' en fonction de la fin du jeu
 */
 void fin_jeu(SDL_Surface *ecran, matrix T, int size, int nbr_coup, int nb_coup_max, TTF_Font *police);
-
-
-/**
-* \function texte
-* \param *ecran
-* \param *nbr_coup_texte
-* \param *police
-* \brief //TODO
-*/
 
 
 #endif
